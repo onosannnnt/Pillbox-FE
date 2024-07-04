@@ -1,10 +1,14 @@
 <script lang="ts">
+	import type { Cookies } from '@sveltejs/kit';
 	import LandingPage from './components/landingPage.svelte';
-	export let data: { token: any };
+	export let data: { isLogin: Cookies };
+	$: {
+		console.log(data.isLogin);
+	}
 </script>
 
-{#if !data.token}
+{#if data.isLogin === undefined}
 	<LandingPage />
 {:else}
-	<main>Hello</main>
+	<div>Token: {data.isLogin}</div>
 {/if}

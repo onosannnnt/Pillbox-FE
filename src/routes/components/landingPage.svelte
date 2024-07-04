@@ -2,16 +2,34 @@
 	import { fly } from 'svelte/transition';
 	import imgUrl from '../../assets/png/background_dashboard.png';
 	import closeIcon from '../../assets/svg/close-icon.png';
+	import { axiosLib } from '$lib/axiosLib.js';
+	import type { UserLogin } from '../../interfaces/userLogin';
+	import Swal from 'sweetalert2';
+
 	let visibleLogin = true;
 	let onLogin = false;
-	let userData = {
+	let userData: UserLogin = {
 		emailOrUsername: '',
 		password: ''
 	};
 
-	const handleOnSubmit = (e: any) => {
+	const handleOnSubmit = async (e: any) => {
 		e.preventDefault();
 		onLogin = true;
+		try {
+			const response = await axiosLib.post(`/user/login`, userData);
+			if (response.status === 200) {
+				window.location.reload();
+			}
+		} catch (error) {
+			onLogin = false;
+			Swal.fire({
+				icon: 'error',
+				title: 'เข้าสู่ระบบไม่สำเร็จ',
+				text: 'กรุณาตรวจสอบอีเมลหรือรหัสผ่านอีกครั้ง',
+				timer: 2000
+			});
+		}
 	};
 </script>
 
@@ -55,10 +73,10 @@
 						/></button
 					>
 				</div>
-				<form class="grid place-items-center p-10">
+				<form class="grid place-items-center w-full h-1/2 pt-10" on:submit={handleOnSubmit}>
 					<h1 class="text-5xl p-10">เข้าสู่ระบบ</h1>
 					<div class="grid">
-						<label for="emailOrUsername">ชื่อผู้ใช้</label>
+						<label for="emailOrUsername">อีเมลหรือชื่อผู้ใช้</label>
 						<input
 							class="w-full p-2 border border-neutral-300 rounded-xl"
 							type="text"
@@ -78,11 +96,11 @@
 						/>
 					</div>
 					{#if !onLogin}
-						<button
+						<input
 							type="submit"
 							class="text-2xl bg-neutral-300 w-52 h-12 my-6 rounded"
-							on:click={handleOnSubmit}>เข้าสู่ระบบ</button
-						>
+							value="เข้าสู่ระบบ"
+						/>
 					{:else}
 						<button type="submit" class="text-2xl bg-neutral-300 w-52 h-12 my-6 rounded" disabled
 							>กำลังเข้าสู่ระบบ...</button
