@@ -1,2 +1,10 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script lang="ts">
+	import LandingPage from './components/landingPage.svelte';
+	export let data: { token: any };
+</script>
+
+{#if !data.token}
+	<LandingPage />
+{:else}
+	<main>Hello</main>
+{/if}
