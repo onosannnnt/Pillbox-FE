@@ -1,10 +1,11 @@
 <script lang="ts">
 	import type { Cookies } from '@sveltejs/kit';
+	import Login from './components/login.svelte';
 	export let data: { isLogin: Cookies };
 </script>
 
 {#if data.isLogin === undefined}
-	<div>not login</div>
+	<Login></Login>
 {:else}
-	<div>Login</div>
+	<div>{data.isLogin}</div>
 {/if}
