@@ -6,10 +6,8 @@ const Welcome: React.FC = () => {
   return (
     <React.Fragment>
       <div className="bg-primary-blue h-screen py-16">
-        <div className="container mx-auto bg-white rounded-md h-full grid grid-cols-2">
-          <div>
-            <img />
-          </div>
+        <div className="container mx-auto bg-white rounded-md h-full grid grid-cols-2 place-items-center">
+          <img src="/klongyaa.png" alt="welcome" className="w-full h-full object-contain max-w-[32rem] aspect-square" />
           <div className="">
             <div>
               <h1 className="text-3xl font-bold text-center">WELCOME TO KLONGYAA</h1>
