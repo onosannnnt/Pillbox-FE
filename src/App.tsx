@@ -1,11 +1,16 @@
-import './App.css'
+import Welcome from '@/pages/Welcome'
+import { ConfigProvider } from 'antd'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 function App() {
-
   return (
-    <>
-      <div className='bg-blue-200'>1111</div>
-    </>
+    <ConfigProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Welcome />} />
+        </Routes>
+      </BrowserRouter>
+    </ConfigProvider>
   )
 }
 
