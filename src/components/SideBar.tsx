@@ -1,4 +1,4 @@
-import { BASE_ROUTE, HISTORY_ROUTE } from '@/config/route'
+import { BASE_ROUTE, HISTORY_ROUTE, PILL_STOCK_ROUTE } from '@/config/route'
 import { Button } from 'antd'
 import React from 'react'
 import { Link } from 'react-router-dom'
@@ -20,7 +20,7 @@ const SideBar: React.FC = () => {
             <Link to={BASE_ROUTE}>
               <p className="text-center">Forgetten Rate</p>
             </Link>
-            <Link to={BASE_ROUTE}>
+            <Link to={PILL_STOCK_ROUTE}>
               <p className="text-center">Pill Stock</p>
             </Link>
           </div>
