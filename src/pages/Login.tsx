@@ -1,9 +1,10 @@
-import customizeRequiredMark from "@/components/customizeRequiredMark";
-import { axiosInstance } from "@/utils/axios";
-import { Button, Form, Input, Typography } from "antd";
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+import customizeRequiredMark from '@/components/customizeRequiredMark'
+import { axiosInstance } from '@/utils/axios'
+import { Button, Form, Input, Typography } from 'antd'
+import { isAxiosError } from 'axios'
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 type UserLogin = {
   username: string;
@@ -35,12 +36,23 @@ const Login: React.FC = () => {
         Navigate("/home");
       });
     } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "เข้าสู่ระบบไม่สำเร็จ",
-        text: "กรุณาลองใหม่อีกครั้ง",
-      });
-      console.log(error);
+      if (isAxiosError(error)) {
+        if (error.response?.status === 401) {
+          Swal.fire({
+            icon: 'error',
+            title: 'เข้าสู่ระบบไม่สำเร็จ',
+            text: 'กรุณาลองใหม่อีกครั้ง',
+          })
+          return
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'ระบบขัดข้อง',
+            text: 'กรุณาลองใหม่อีกครั้ง',
+          })
+          return
+        }
+      }
     }
   };
 
