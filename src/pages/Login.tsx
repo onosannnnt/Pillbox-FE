@@ -37,7 +37,12 @@ const Login: React.FC = () => {
       });
       console.log(response.data);
     } catch (error) {
-      console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "เข้าสู่ระบบไม่สำเร็จ",
+        text: "กรุณาลองใหม่อีกครั้ง",
+      });
+      console.error(error);
     }
   };
 
@@ -51,9 +56,6 @@ const Login: React.FC = () => {
               alt="welcome"
               className="w-full h-full object-contain max-w-[32rem] aspect-square"
             />
-            <Title level={2} className="text-center">
-              ยินดีต้อนรับเข้าสู่กล่องยา
-            </Title>
           </div>
           <div>
             <form onSubmit={onSubmit}>
