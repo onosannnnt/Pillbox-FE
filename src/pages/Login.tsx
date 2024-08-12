@@ -1,29 +1,28 @@
-import React, { useState } from "react";
-import { Typography } from "antd";
+import customizeRequiredMark from "@/components/customizeRequiredMark";
 import { axiosInstance } from "@/utils/axios";
-import Swal from "sweetalert2";
+import { Button, Form, Input, Typography } from "antd";
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+
+type UserLogin = {
+  username: string;
+  password: string;
+};
 
 const Login: React.FC = () => {
+  const [form] = Form.useForm();
   const Navigate = useNavigate();
   const { Title } = Typography;
-  const [user, setUser] = useState({
-    emailOrUsername: "",
-    password: "",
-  });
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUser({
-      ...user,
-      [e.target.name]: e.target.value,
-    });
-    console.log(user);
-  };
-
-  const onSubmit = async (e: React.FormEvent<HTMLInputElement>) => {
-    e.preventDefault();
+  const onFinish = async () => {
     try {
-      const response = await axiosInstance.post("/user/login", user);
+      const data: UserLogin = form.getFieldsValue();
+
+      const response = await axiosInstance.post("/user/login", {
+        username: data.username,
+        password: data.password,
+      });
       if (response.status != 200) {
         throw new Error("Login failed");
       }
@@ -35,14 +34,13 @@ const Login: React.FC = () => {
       }).then(() => {
         Navigate("/home");
       });
-      console.log(response.data);
     } catch (error) {
       Swal.fire({
         icon: "error",
         title: "เข้าสู่ระบบไม่สำเร็จ",
         text: "กรุณาลองใหม่อีกครั้ง",
       });
-      console.error(error);
+      console.log(error);
     }
   };
 
@@ -58,34 +56,52 @@ const Login: React.FC = () => {
             />
           </div>
           <div>
-            <form onSubmit={onSubmit}>
-              <Title level={2} className="text-center">
-                เข้าสู่ระบบเพื่อใช้งาน
-              </Title>
-              <label htmlFor="username" className="block text-2xl">
-                ชื่อผู้ใช้
-              </label>
-              <input
-                type="text"
-                name="emailOrUsername"
-                onChange={onChange}
-                className="w-full p-2 my-2 border border-gray-300 rounded-md"
-                placeholder="Username or Email"
-              />
-              <label htmlFor="username" className="block text-xl">
-                รหัสผ่าน
-              </label>
-              <input
-                type="password"
+            <Title level={2} className="text-center">
+              เข้าสู่ระบบเพื่อใช้งาน
+            </Title>
+            <Form
+              form={form}
+              layout="vertical"
+              scrollToFirstError
+              onFinish={onFinish}
+              requiredMark={customizeRequiredMark}
+            >
+              <Form.Item
+                label={<p className="text-2xl">ชื่อผู้ใช้</p>}
+                name="username"
+                rules={[
+                  {
+                    required: true,
+                    message: "กรุณากรอกชื่อผู้ใช้",
+                  },
+                ]}
+              >
+                <Input placeholder="Username" size="large" />
+              </Form.Item>
+              <Form.Item
+                label={<p className="text-2xl">รหัสผ่าน</p>}
                 name="password"
-                onChange={onChange}
-                className="w-full p-2 my-2 border border-gray-300 rounded-md"
-                placeholder="รหัสผ่าน"
-              />
-              <button className="w-full py-2 px-3 bg-secondary-blue rounded-2xl text-xl text-center">
+                rules={[
+                  {
+                    required: true,
+                    message: "กรุณากรอกรหัสผ่าน",
+                  },
+                  {
+                    min: 8,
+                    message: "รหัสผ่านต้องมีอย่างน้อย 8 ตัว",
+                  },
+                ]}
+              >
+                <Input placeholder="Password" type="password" size="large" />
+              </Form.Item>
+              <Button
+                type="primary"
+                htmlType="submit"
+                className="w-full py-2 px-3 bg-secondary-blue rounded-2xl text-xl text-center"
+              >
                 เข้าสู่ระบบ
-              </button>
-            </form>
+              </Button>
+            </Form>
           </div>
         </div>
       </main>
