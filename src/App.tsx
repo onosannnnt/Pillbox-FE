@@ -1,5 +1,6 @@
 import HomeLayout from '@/components/layouts/HomeLayout'
-import { BASE_ROUTE, LOGIN_ROUTE, WELCOME_ROUTE } from '@/config/route'
+import { BASE_ROUTE, HISTORY_ROUTE, LOGIN_ROUTE, WELCOME_ROUTE } from '@/config/route'
+import History from '@/pages/History'
 import Home from '@/pages/Home'
 import Login from '@/pages/Login'
 import Welcome from '@/pages/Welcome'
@@ -23,6 +24,7 @@ function App() {
             }
           >
             <Route index element={<Home />} />
+            <Route path={HISTORY_ROUTE} element={<History />} />
           </Route>
           <Route path={WELCOME_ROUTE} element={<Welcome />} />
           <Route path={LOGIN_ROUTE} element={<Login />} />

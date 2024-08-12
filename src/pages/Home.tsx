@@ -4,7 +4,7 @@ const Home: React.FC = () => {
   const eight = [1, 2, 3, 4, 5, 6, 7, 8]
   return (
     <React.Fragment>
-      <div className="bg-slate-200 grid place-items-center h-full w-full">
+      <div className="grid place-items-center h-full w-full">
         <div className="grid grid-cols-2 bg-primary-blue h-5/6 w-3/4">
           {eight.map((item) => {
             return (
