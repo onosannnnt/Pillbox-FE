@@ -1,7 +1,7 @@
 import {
   BASE_ROUTE,
   HISTORY_ROUTE,
-  FORGOTTEN_RATE,
+  FORGOTTEN_RATE_ROUTE,
   PILL_STOCK_ROUTE,
 } from "@/config/route";
 import { Button } from "antd";
@@ -19,14 +19,14 @@ const SideBar: React.FC = () => {
             className="w-64 aspect-square self-center"
           />
           <div className="flex flex-col gap-y-4">
-            <p className="text-center">OnO-OlO@gmail.com</p>
+            <p className="text-center">Test@gmail.com</p>
             <Link to={BASE_ROUTE}>
               <p className="text-center">Home</p>
             </Link>
             <Link to={HISTORY_ROUTE}>
               <p className="text-center">History</p>
             </Link>
-            <Link to={FORGOTTEN_RATE}>
+            <Link to={FORGOTTEN_RATE_ROUTE}>
               <p className="text-center">Forgetten Rate</p>
             </Link>
             <Link to={PILL_STOCK_ROUTE}>

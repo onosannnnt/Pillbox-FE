@@ -10,12 +10,14 @@ import {
   BASE_ROUTE,
   HISTORY_ROUTE,
   LOGIN_ROUTE,
-  FORGOTTEN_RATE,
+  FORGOTTEN_RATE_ROUTE,
   PILL_STOCK_ROUTE,
   WELCOME_ROUTE,
+  PILL_DETAIL_ROUTE,
 } from "@/config/route";
 import PillStock from "@/pages/PillStock";
 import Forgotten from "./pages/Forgotten";
+import PillDetail from "./pages/PillDetail";
 
 function App() {
   return (
@@ -35,7 +37,8 @@ function App() {
             <Route index element={<Home />} />
             <Route path={HISTORY_ROUTE} element={<History />} />
             <Route path={PILL_STOCK_ROUTE} element={<PillStock />} />
-            <Route path={FORGOTTEN_RATE} element={<Forgotten />} />
+            <Route path={FORGOTTEN_RATE_ROUTE} element={<Forgotten />} />
+            <Route path={PILL_DETAIL_ROUTE} element={<PillDetail />} />
           </Route>
           <Route path={WELCOME_ROUTE} element={<Welcome />} />
           <Route path={LOGIN_ROUTE} element={<Login />} />
