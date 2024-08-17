@@ -1,7 +1,9 @@
-import React from 'react'
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Home: React.FC = () => {
-  const eight = [1, 2, 3, 4, 5, 6, 7, 8]
+  const navigate = useNavigate();
+  const eight = [1, 2, 3, 4, 5, 6, 7, 8];
   return (
     <React.Fragment>
       <div className="grid place-items-center h-full w-full">
@@ -12,20 +14,22 @@ const Home: React.FC = () => {
                 className="bg-primary-blue hover:bg-secondary-blue cursor-pointer grid place-items-center"
                 key={item}
                 onClick={() => {
-                  console.log(item)
+                  navigate(`/pill-detail/${item}`);
                 }}
               >
                 <div className="text-center">
-                  <h1 className="text-center text-2xl font-bold ">กล่องที่ {item}</h1>
+                  <h1 className="text-center text-2xl font-bold ">
+                    กล่องที่ {item}
+                  </h1>
                   <h2>ชื่อยา</h2>
                 </div>
               </div>
-            )
+            );
           })}
         </div>
       </div>
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
