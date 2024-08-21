@@ -4,11 +4,40 @@ import {
   FORGOTTEN_RATE_ROUTE,
   PILL_STOCK_ROUTE,
 } from "@/config/route";
+import { axiosInstance } from "@/utils/axios";
 import { Button } from "antd";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const SideBar: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      const response = await axiosInstance.get("/user/logout");
+      if (response.status != 200) {
+        throw new Error("Logout failed");
+      }
+      Swal.fire({
+        icon: "success",
+        title: "ออกจากระบบสำเร็จ",
+        showConfirmButton: false,
+        timer: 1500,
+      }).then(() => {
+        navigate("/login");
+      });
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "ระบบขัดข้อง",
+        text: "กรุณาลองใหม่อีกครั้ง",
+      });
+      console.log(error);
+      return;
+    }
+  };
+
   return (
     <React.Fragment>
       <div className="bg-primary-blue text-black flex h-full w-80 flex-col justify-between py-[4rem]">
@@ -35,7 +64,9 @@ const SideBar: React.FC = () => {
           </div>
         </div>
         <div className="flex w-full justify-center">
-          <Button className="bg-secondary-blue">ออกจากระบบ</Button>
+          <Button className="bg-secondary-blue" onClick={handleLogout}>
+            ออกจากระบบ
+          </Button>
         </div>
       </div>
     </React.Fragment>
