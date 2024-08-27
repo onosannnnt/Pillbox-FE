@@ -2,6 +2,7 @@ import Loading from "@/components/Loading";
 import { axiosInstance } from "@/utils/axios";
 import { Select, Table, TableColumnsType } from "antd";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 type TableHistory = {
@@ -72,7 +73,8 @@ const historyColumns: TableColumnsType<TableHistory> = [
 
 const History: React.FC = () => {
   const [history, setHistory] = useState<TableHistory[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [isloading, setLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
   const getHistory = async () => {
     try {
       setLoading(true);
@@ -88,6 +90,8 @@ const History: React.FC = () => {
         icon: "error",
         title: "เกิดข้อผิดพลาด",
         text: (error as Error).message,
+      }).then(() => {
+        navigate("/");
       });
     }
   };
@@ -96,7 +100,7 @@ const History: React.FC = () => {
     getHistory();
   }, []);
 
-  if (loading) {
+  if (isloading) {
     return (
       <>
         <div className="w-full h-screen content-center text-center">
