@@ -1,9 +1,10 @@
 import customizeRequiredMark from "@/components/customizeRequiredMark";
+import { BASE_ROUTE } from "@/config/route";
+import { AuthContext } from "@/context/auth";
 import { axiosInstance } from "@/utils/axios";
 import { Button, Form, Input, Typography } from "antd";
 import { isAxiosError } from "axios";
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
 import Swal from "sweetalert2";
 
 type UserLogin = {
@@ -13,9 +14,8 @@ type UserLogin = {
 
 const Login: React.FC = () => {
   const [form] = Form.useForm();
-  const Navigate = useNavigate();
   const { Title } = Typography;
-
+  const authContext = useContext(AuthContext);
   const onFinish = async () => {
     try {
       const data: UserLogin = form.getFieldsValue();
@@ -33,7 +33,7 @@ const Login: React.FC = () => {
         showConfirmButton: false,
         timer: 1500,
       }).then(() => {
-        Navigate("/");
+        window.location.href = BASE_ROUTE;
       });
     } catch (error) {
       if (isAxiosError(error)) {
@@ -55,6 +55,11 @@ const Login: React.FC = () => {
       }
     }
   };
+  useEffect(() => {
+    if (authContext?.auth.isAuth) {
+      window.location.href = BASE_ROUTE;
+    }
+  }, [AuthContext]);
 
   return (
     <>

@@ -7,12 +7,10 @@ import {
 import { axiosInstance } from "@/utils/axios";
 import { Button } from "antd";
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const SideBar: React.FC = () => {
-  const navigate = useNavigate();
-
   const handleLogout = async () => {
     try {
       const response = await axiosInstance.get("/user/logout");
@@ -25,7 +23,7 @@ const SideBar: React.FC = () => {
         showConfirmButton: false,
         timer: 1500,
       }).then(() => {
-        navigate("/login");
+        window.location.href = BASE_ROUTE;
       });
     } catch (error) {
       Swal.fire({
