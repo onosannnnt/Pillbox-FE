@@ -12,26 +12,41 @@ const generateInitData = (count: number) => {
   }));
 };
 
+type pillData = {
+  id: string;
+  channelIndex: number;
+  amount: number;
+  Total: number;
+  amountPerTime: number;
+  medicine: {
+    id: string;
+    name: string;
+    description: string;
+    note: string;
+    img: string;
+  };
+};
+
 const Home: React.FC = () => {
   const authContext = useContext(AuthContext);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
-  let initData = generateInitData(authContext?.auth.numberOfPillChannels || 0);
+  const initData = generateInitData(
+    authContext?.auth.numberOfPillChannels || 0
+  );
   const [pill, setPill] = useState(initData);
 
   const fetchPill = async () => {
     try {
       const response = await axiosInstance.get("/user/getPillChannels");
       const data = response.data;
-      console.log(data);
-      data.forEach((item: any) => {
+      data.forEach((item: pillData) => {
         initData[item.channelIndex] = {
           boxID: item.id,
           pillName: item.medicine.name,
         };
       });
       setPill(initData);
-      console.log(pill);
       setIsLoading(false);
     } catch {
       Swal.fire({
