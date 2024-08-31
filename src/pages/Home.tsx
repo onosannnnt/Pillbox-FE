@@ -1,6 +1,9 @@
+import Loading from "@/components/Loading";
 import { AuthContext } from "@/context/auth";
+import { axiosInstance } from "@/utils/axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const generateInitData = (count: number) => {
   return Array.from({ length: count }, () => ({
@@ -12,29 +15,46 @@ const generateInitData = (count: number) => {
 const Home: React.FC = () => {
   const authContext = useContext(AuthContext);
   const navigate = useNavigate();
-  const initData = generateInitData(
-    authContext?.auth.numberOfPillChannels || 0
-  );
+  const [isLoading, setIsLoading] = useState(true);
+  let initData = generateInitData(authContext?.auth.numberOfPillChannels || 0);
   const [pill, setPill] = useState(initData);
 
+  const fetchPill = async () => {
+    try {
+      const response = await axiosInstance.get("/user/getPillChannels");
+      const data = response.data;
+      console.log(data);
+      data.forEach((item: any) => {
+        initData[item.channelIndex] = {
+          boxID: item.id,
+          pillName: item.medicine.name,
+        };
+      });
+      setPill(initData);
+      console.log(pill);
+      setIsLoading(false);
+    } catch {
+      Swal.fire({
+        icon: "error",
+        title: "เกิดข้อผิดพลาด",
+        text: "กรุณาลองใหม่อีกครั้ง",
+      });
+    }
+  };
+
   useEffect(() => {
-    const mockData = [
-      {
-        boxID: "dsadsadwasd",
-        pillName: "ยาแก้ปวด",
-      },
-      {
-        boxID: "dsadsadwasds",
-        pillName: "ยาแก้ปวด",
-      },
-      {
-        boxID: "dsadsadwasdq",
-        pillName: "ยาแก้ปวด",
-      },
-    ];
-    const remainingInitData = initData.slice(mockData.length);
-    setPill([...mockData, ...remainingInitData]);
-  }, [authContext]);
+    fetchPill();
+  }, [isLoading]);
+
+  if (isLoading) {
+    return (
+      <>
+        <div className="w-full h-screen content-center text-center">
+          <Loading size="large" />
+        </div>
+      </>
+    );
+  }
 
   return (
     <React.Fragment>
