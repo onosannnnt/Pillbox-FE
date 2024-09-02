@@ -84,12 +84,12 @@ const PillDetail = () => {
           </div>
           <div className="flex w-1/2 px-10 py-4">
             <b className="font-bold text-2xl px-6">เวลาทานยา : </b>
-            <div className="grid gap-3 divide-y-2 divide-black">
+            <div className="grid gap-4 ">
               {" "}
-              {pill?.times.map((item) => {
+              {pill?.times.map((item, index) => {
                 return (
                   <div key={item.time} className="text-2xl">
-                    {item.time} น.
+                    ครั้งที่ {index + 1} : {item.time} น.
                   </div>
                 );
               })}
