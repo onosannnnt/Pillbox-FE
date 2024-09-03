@@ -45,8 +45,7 @@ const PillDetail = () => {
 
   useEffect(() => {
     fetchPill();
-    console.log(pill?.times.map((time) => time.time));
-  }, [isLoading]);
+  }, []);
 
   if (isLoading) {
     return (
