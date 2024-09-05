@@ -5,6 +5,13 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
+type HistoryType = {
+  id: string;
+  task: string;
+  createdAt: Date;
+  medicine: MedicineType;
+};
+
 type TableHistory = {
   date: Date;
   time: string;
@@ -59,6 +66,23 @@ const historyColumns: TableColumnsType<TableHistory> = [
         return <p className="text-red-600">ผู้ใช้ลืมรับประทานยา</p>;
       } else return "Test";
     },
+    filters: [
+      // Changed 'filter' to 'filters'
+      {
+        text: "เเจ้งเตือนการทานยา",
+        value: "alert",
+      },
+      {
+        text: "ผู้ใช้รับประทานยา",
+        value: "take",
+      },
+      {
+        text: "ผู้ใช้ลืมรับประทานยา",
+        value: "forget",
+      },
+    ],
+    filterMode: "tree",
+    onFilter: (value, record) => record.task.startsWith(value as string),
   },
 
   {
@@ -72,19 +96,31 @@ const historyColumns: TableColumnsType<TableHistory> = [
 ];
 
 const History: React.FC = () => {
+  const [isloading, setLoading] = useState<boolean>(true);
   const [history, setHistory] = useState<TableHistory[]>([]);
-  const [isloading, setLoading] = useState<boolean>(false);
+  const [period, setPeriod] = useState<string>("week");
   const navigate = useNavigate();
   const getHistory = async () => {
     try {
       setLoading(true);
       const response = await axiosInstance.get("/user/getHistory");
-      setLoading(false);
       if (response.status != 200) {
-        throw new Error("Get history failed");
+        throw new Error("ไม่สามารถดึงประวัติได้");
       }
-      setHistory(response.data);
-      console.log(history);
+      setHistory(
+        response.data.filter((item: HistoryType) => {
+          const date = new Date(item.createdAt);
+          if (period === "week") {
+            return (
+              date >= new Date(new Date().setDate(new Date().getDate() - 6))
+            );
+          } else if (period === "month") {
+            return date.getMonth() === new Date().getMonth();
+          } else if (period === "last_month") {
+            return date.getMonth() === new Date().getMonth() - 1;
+          }
+        })
+      );
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -98,7 +134,9 @@ const History: React.FC = () => {
 
   useEffect(() => {
     getHistory();
-  }, []);
+    console.log(history);
+    setLoading(false);
+  }, [period]);
 
   if (isloading) {
     return (
@@ -136,6 +174,7 @@ const History: React.FC = () => {
                 value: "last_month",
               },
             ]}
+            onChange={(value) => setPeriod(value)}
           />
         </div>
         <div className="bg-white rounded-xl grid grid-cols-2 py-4 px-2">
@@ -149,8 +188,7 @@ const History: React.FC = () => {
               </p>
               <div className="flex justify-center">
                 <p className="bg-secondary-blue py-2 px-4 border-black rounded-xl drop-shadow-md">
-                  {history.filter((item) => item.task === "alert").length}
-                  ครั้ง
+                  {history.filter((item) => item.task === "alert").length} ครั้ง
                 </p>
               </div>
             </div>
