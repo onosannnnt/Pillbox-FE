@@ -48,12 +48,14 @@ const Home: React.FC = () => {
       });
       setPill(initData);
       setIsLoading(false);
-    } catch {
-      Swal.fire({
-        icon: "error",
-        title: "เกิดข้อผิดพลาด",
-        text: "กรุณาลองใหม่อีกครั้ง",
-      });
+    } catch (error: any) {
+      if (error.response.status !== 401) {
+        Swal.fire({
+          icon: "error",
+          title: "เกิดข้อผิดพลาด",
+          text: "ไม่สามารถดึงข้อมูลยาได้",
+        });
+      }
     }
   };
 
