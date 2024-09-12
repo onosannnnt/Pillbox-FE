@@ -3,14 +3,17 @@ import {
   HISTORY_ROUTE,
   FORGOTTEN_RATE_ROUTE,
   PILL_STOCK_ROUTE,
+  ADMIN_ROUTE,
 } from "@/config/route";
+import { AuthContext } from "@/context/auth";
 import { axiosInstance } from "@/utils/axios";
 import { Button } from "antd";
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const SideBar: React.FC = () => {
+  const auth = useContext(AuthContext);
   const handleLogout = async () => {
     try {
       const response = await axiosInstance.get("/user/logout");
@@ -45,20 +48,31 @@ const SideBar: React.FC = () => {
             alt="icon"
             className="w-64 aspect-square self-center"
           />
-          <div className="flex flex-col gap-y-4">
-            <p className="text-center">Test@gmail.com</p>
+          <div className="flex flex-col gap-y-4 text-xl">
+            <p className="text-center text-2xl ">{auth?.auth.username}</p>
             <Link to={BASE_ROUTE}>
-              <p className="text-center">Home</p>
+              <p className="text-center hover:bg-secondary-blue p-2">Home</p>
             </Link>
             <Link to={HISTORY_ROUTE}>
-              <p className="text-center">History</p>
+              <p className="text-center hover:bg-secondary-blue p-2">History</p>
             </Link>
             <Link to={FORGOTTEN_RATE_ROUTE}>
-              <p className="text-center">Forgetten Rate</p>
+              <p className="text-center hover:bg-secondary-blue p-2">
+                Forgetten Rate
+              </p>
             </Link>
             <Link to={PILL_STOCK_ROUTE}>
-              <p className="text-center">Pill Stock</p>
+              <p className="text-center hover:bg-secondary-blue p-2">
+                Pill Stock
+              </p>
             </Link>
+            {auth?.auth.role === "admin" ? (
+              <Link to={ADMIN_ROUTE}>
+                <p className="text-center hover:bg-secondary-blue p-2">Admin</p>
+              </Link>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
         <div className="flex w-full justify-center">
