@@ -1,12 +1,12 @@
-import HomeLayout from "@/components/layouts/HomeLayout";
-import History from "@/pages/History";
-import Home from "@/pages/Home";
-import Login from "@/pages/Login";
-import Welcome from "@/pages/Welcome";
-import { ConfigProvider } from "antd";
-import { AuthContext, InitAuthValue, IContextType } from "./context/auth";
-import { Suspense, useState, useCallback, useEffect } from "react";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import HomeLayout from '@/components/layouts/HomeLayout'
+import History from '@/pages/History'
+import Home from '@/pages/Home'
+import Login from '@/pages/Login'
+import Welcome from '@/pages/Welcome'
+import { ConfigProvider } from 'antd'
+import { AuthContext, InitAuthValue, IContextType } from './context/auth'
+import { Suspense, useState, useCallback, useEffect } from 'react'
+import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom'
 import {
   BASE_ROUTE,
   HISTORY_ROUTE,
@@ -15,20 +15,22 @@ import {
   PILL_STOCK_ROUTE,
   WELCOME_ROUTE,
   PILL_DETAIL_ROUTE,
-} from "@/config/route";
-import PillStock from "@/pages/PillStock";
-import Forgotten from "./pages/Forgotten";
-import PillDetail from "./pages/PillDetail";
-import { axiosInstance } from "./utils/axios";
-import Loading from "./components/Loading";
+  ADMIN_ROUTE,
+} from '@/config/route'
+import PillStock from '@/pages/PillStock'
+import Forgotten from './pages/Forgotten'
+import PillDetail from './pages/PillDetail'
+import { axiosInstance } from './utils/axios'
+import Loading from './components/Loading'
+import AdminLayout from '@/components/layouts/AdminLayout'
 
 function App() {
-  const [auth, setAuth] = useState<IContextType>(InitAuthValue);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [auth, setAuth] = useState<IContextType>(InitAuthValue)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
   const handleLogin = useCallback(async () => {
     try {
-      setIsLoading(true);
-      const response = await axiosInstance.get("/user/me");
+      setIsLoading(true)
+      const response = await axiosInstance.get('/user/me')
       if (response.status === 200) {
         setAuth({
           email: response.data.email,
@@ -36,18 +38,18 @@ function App() {
           numberOfPillChannels: response.data.numberOfPillChannels,
           role: response.data.role,
           isAuth: true,
-        });
+        })
       }
     } catch {
-      setAuth(InitAuthValue);
+      setAuth(InitAuthValue)
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
-    handleLogin().then(() => console.log("success"));
-  }, [handleLogin]);
+    handleLogin().then(() => console.log('success'))
+  }, [handleLogin])
 
   if (isLoading) {
     return (
@@ -56,7 +58,7 @@ function App() {
           <Loading size="large" />
         </div>
       </>
-    );
+    )
   }
 
   return (
@@ -80,13 +82,25 @@ function App() {
               <Route path={FORGOTTEN_RATE_ROUTE} element={<Forgotten />} />
               <Route path={PILL_DETAIL_ROUTE} element={<PillDetail />} />
             </Route>
+            <Route
+              path={ADMIN_ROUTE}
+              element={
+                <Suspense>
+                  <AdminLayout>
+                    <Outlet />
+                  </AdminLayout>
+                </Suspense>
+              }
+            >
+              <Route index element={<Home />} />
+            </Route>
             <Route path={WELCOME_ROUTE} element={<Welcome />} />
             <Route path={LOGIN_ROUTE} element={<Login />} />
           </Routes>
         </BrowserRouter>
       </AuthContext.Provider>
     </ConfigProvider>
-  );
+  )
 }
 
-export default App;
+export default App

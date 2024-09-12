@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-type TRole = "admin" | "user";
+export type TRole = "admin" | "user";
 
 export interface IContextType {
   email: string;

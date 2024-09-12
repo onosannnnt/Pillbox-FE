@@ -8,11 +8,11 @@ type Props = {
   children: React.ReactNode
 }
 
-const HomeLayout: React.FC<Props> = (props) => {
+const AdminLayout: React.FC<Props> = (props) => {
   const navigate = useNavigate()
   const authContext = useContext(AuthContext)
   useEffect(() => {
-    const AllowRole: TRole[] = ['admin', 'user']
+    const AllowRole: TRole[] = ['admin']
     if (authContext?.auth.isAuth === false) {
       navigate(LOGIN_ROUTE)
     }
@@ -33,4 +33,4 @@ const HomeLayout: React.FC<Props> = (props) => {
   )
 }
 
-export default HomeLayout
+export default AdminLayout
