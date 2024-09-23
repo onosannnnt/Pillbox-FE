@@ -16,7 +16,7 @@ type dataType = {
   firstName: string;
   user_username: string;
   user: string;
-  count: number;
+  forget: number;
 };
 
 const AllForgot = () => {
@@ -24,7 +24,7 @@ const AllForgot = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const fetchAllForgot = async () => {
     try {
-      const response = await axiosInstance.get("/admin/getAllForgetHistory");
+      const response = await axiosInstance.get("/admin/getWeeklyForgotAllUser");
       console.log(response.data);
       if (response.status === 200) {
         setData(response.data);
@@ -46,7 +46,7 @@ const AllForgot = () => {
   if (isLoading) {
     return (
       <>
-        <div className="w-full h-screen content-center text-center">
+        <div className="w-full h-full content-center text-center">
           <Loading size="large" />
         </div>
       </>
@@ -54,8 +54,8 @@ const AllForgot = () => {
   }
   return (
     <>
-      <div className="flex flex-col justify-center items-center h-4/6 pt-10 bg-white rounded-2xl">
-        <div>จำนวนครั้งการลืมทานยา</div>
+      <div className="flex flex-col justify-center items-center h-4/6 w-11/12 bg-white rounded-2xl">
+        <h1 className="pt-7 text-2xl">จำนวนครั้งการลืมทานยา</h1>
         <ResponsiveContainer width="75%">
           <ComposedChart
             layout="vertical"
@@ -73,7 +73,7 @@ const AllForgot = () => {
             <XAxis type="number" />
             <YAxis dataKey="user_username" type="category" />
             <Tooltip />
-            <Bar dataKey="count" barSize={40} fill="#413ea0" />
+            <Bar dataKey="จำนวนครั้งที่ลืม" barSize={30} fill="#279EFF" />
           </ComposedChart>
         </ResponsiveContainer>
       </div>

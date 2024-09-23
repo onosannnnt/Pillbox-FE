@@ -1,32 +1,18 @@
 import React from "react";
-import { Input } from "antd";
-import type { GetProps } from "antd";
 import AllForgot from "@/components/AllForgot";
 
-type SearchProps = GetProps<typeof Input.Search>;
-
-const { Search } = Input;
 const Dashboard = () => {
-  const onSearch: SearchProps["onSearch"] = (value, _e, info) =>
-    console.log(info?.source, value);
   return (
     <>
-      <div className="flex items-center justify-center">
-        <Search
-          placeholder="input search text"
-          allowClear
-          enterButton="Search"
-          size="large"
-          className="w-5/6 flex items-center"
-          onSearch={onSearch}
-        />
+      <div className="h-full w-full flex flex-col items-center gap-10 py-10">
+        <h1 className="text-4xl">ภาพรวม</h1>
+        <div className="w-full flex justify-around">
+          <div className="w-1/4 border">1</div>
+          <div className="w-1/4 border">1</div>
+          <div className="w-1/4 border">1</div>
+        </div>
+        <AllForgot />
       </div>
-      <div className="flex justify-around pt-10">
-        <div className="w-1/4 border">1</div>
-        <div className="w-1/4 border">1</div>
-        <div className="w-1/4 border">1</div>
-      </div>
-      <AllForgot />
     </>
   );
 };
