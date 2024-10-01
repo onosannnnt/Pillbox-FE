@@ -48,7 +48,7 @@ const AllForgotPieChart = () => {
   }, []);
   return (
     <>
-      <div className="w-full bg-white rounded-lg px-5">
+      <div className="w-full bg-white rounded-lg p-5">
         <div className="text-center text-2xl">จำนวนการลืมทานยาทั้งหมด</div>
         <div className="w-full grid grid-cols-2">
           <ResponsiveContainer width="100%" height={300}>
@@ -84,7 +84,7 @@ const AllForgotPieChart = () => {
             {forgetData.map((item, index) => (
               <div key={index} className="flex justify-between ">
                 <div>{item.firstName || item.user_username || item.user}</div>
-                <div>{getPercentage(item.forget, allTotal)}%</div>
+                <div>{item.forget} ครั้ง</div>
               </div>
             ))}
           </div>

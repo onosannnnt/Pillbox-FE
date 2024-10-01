@@ -111,7 +111,7 @@ const Forgotten: FC = () => {
             month: "numeric",
             day: "numeric",
           })}{" "}
-          / ถึง {new Date().toLocaleDateString()}
+          ถึง {new Date().toLocaleDateString()}
         </h2>
         <div className="flex w-full justify-end">
           <Select

@@ -32,7 +32,7 @@ const LatestActive = () => {
 
   return (
     <>
-      <div className="w-full h-full bg-white rounded-lg px-5">
+      <div className="w-full h-full bg-white rounded-lg p-5">
         <div className="w-full h-full flex flex-col">
           <div className="text-center text-2xl">การใช้งานล่าสุด</div>
           <div className="flex flex-col justify-around h-full overflow-y-scroll">

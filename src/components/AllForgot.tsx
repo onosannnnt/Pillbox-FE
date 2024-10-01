@@ -56,6 +56,17 @@ const AllForgot = () => {
     <>
       <div className="flex flex-col justify-center items-center h-4/6 w-11/12 bg-white rounded-2xl">
         <h1 className="pt-7 text-2xl">จำนวนครั้งการลืมทานยา</h1>
+        <h2 className="text-1xl text-center">
+          ตั้งแต่วันที่{" "}
+          {new Date(
+            new Date().setDate(new Date().getDate() - 6)
+          ).toLocaleDateString("th-TH", {
+            year: "numeric",
+            month: "numeric",
+            day: "numeric",
+          })}{" "}
+          ถึง {new Date().toLocaleDateString()}
+        </h2>
         <ResponsiveContainer width="75%">
           <ComposedChart
             layout="vertical"
