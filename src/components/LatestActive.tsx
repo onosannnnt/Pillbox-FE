@@ -32,29 +32,42 @@ const LatestActive = () => {
 
   return (
     <>
-      <div className="w-full h-full flex flex-col justify-around overflow-y-scroll bg-white rounded-lg px-5">
-        <h1 className="text-center text-2xl">การใช้งานล่าสุด</h1>
-        {data &&
-          data.map((item, index) => {
-            return (
-              <div className="grid grid-cols-3" key={index}>
-                <div>{item.firstName || item.user_username}</div>
-                <div>
-                  {new Date(item.latestActive).toLocaleString("th-TH", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </div>
-                <div>
-                  {new Date(item.latestActive).toLocaleTimeString("th-TH", {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })}
-                </div>
+      <div className="w-full h-full bg-white rounded-lg px-5">
+        <div className="w-full h-full flex flex-col">
+          <div className="text-center text-2xl">การใช้งานล่าสุด</div>
+          <div className="flex flex-col justify-around h-full overflow-y-scroll">
+            <div>
+              <div className="grid grid-cols-3 font-bold">
+                <div className="text-center">ชื่อ</div>
+                <div className="text-center">วันที่</div>
+                <div className="text-center">เวลา</div>
               </div>
-            );
-          })}
+            </div>
+            {data &&
+              data.map((item, index) => {
+                return (
+                  <div className="grid grid-cols-3" key={index}>
+                    <div className="text-center">
+                      {item.firstName || item.user_username}
+                    </div>
+                    <div className="text-center">
+                      {new Date(item.latestActive).toLocaleString("th-TH", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </div>
+                    <div className="text-center">
+                      {new Date(item.latestActive).toLocaleTimeString("th-TH", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
+        </div>
       </div>
     </>
   );
