@@ -2,6 +2,7 @@ import React from "react";
 import AllForgot from "@/components/AllForgot";
 import AllForgotPieChart from "@/components/AllForgotPieChart";
 import LatestActive from "@/components/LatestActive";
+import UserList from "@/components/UserList";
 
 const Dashboard = () => {
   return (
@@ -16,7 +17,12 @@ const Dashboard = () => {
             <LatestActive />
           </div>
         </div>
-        <AllForgot />
+        <div className="h-96 w-full flex justify-center">
+          <AllForgot />
+        </div>
+        <div className="w-11/12">
+          <UserList />
+        </div>
       </div>
     </>
   );
