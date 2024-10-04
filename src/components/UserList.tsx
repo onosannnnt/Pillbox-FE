@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, Col, Row } from "antd";
 import Swal from "sweetalert2";
 import { axiosInstance } from "@/utils/axios";
+import { useNavigate } from "react-router-dom";
 
 type userDataType = {
   id: string;
@@ -17,11 +18,13 @@ type userDataType = {
 
 const UserList = () => {
   const [data, setData] = useState<userDataType[]>([]);
-
+  const [isLoading, setLoading] = useState<boolean>(true);
+  const Navigate = useNavigate();
   const fetchUsers = async () => {
     try {
       const response = await axiosInstance.get("/admin/getAllUser");
       setData(response.data);
+      setLoading(false);
       console.log(response.data);
     } catch {
       Swal.fire({
@@ -30,6 +33,9 @@ const UserList = () => {
         text: "ไม่สามารถดึงข้อมูลผู้ใช้งานได้",
       });
     }
+  };
+  const handleOnClick = (data: userDataType) => {
+    Navigate(`/admin/profile/${data.username}`);
   };
   useEffect(() => {
     fetchUsers();
@@ -42,14 +48,18 @@ const UserList = () => {
           <Col span={8}>
             <Card
               title={
-                user.firstName && user.lastName
-                  ? `${user.firstName} ${user.lastName}`
-                  : user.username
+                user.firstName && user.lastName ? (
+                  <span className="text-xl">
+                    {user.firstName} {user.lastName}
+                  </span>
+                ) : (
+                  <span className="text-xl">{user.username}</span>
+                )
               }
               bordered={false}
-              onClick={() => {
-                console.log(user);
-              }}
+              loading={isLoading}
+              onClick={() => handleOnClick(user)}
+              className="cursor-pointer text-lg"
             >
               <p>
                 ชื่อ:{" "}

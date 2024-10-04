@@ -16,6 +16,7 @@ import {
   WELCOME_ROUTE,
   PILL_DETAIL_ROUTE,
   ADMIN_ROUTE,
+  ADMIN_USER_PROFILE_ROUTE,
 } from "@/config/route";
 import PillStock from "@/pages/PillStock";
 import Forgotten from "./pages/Forgotten";
@@ -24,6 +25,7 @@ import { axiosInstance } from "./utils/axios";
 import Loading from "./components/Loading";
 import AdminLayout from "@/components/layouts/AdminLayout";
 import Dashboard from "./pages/admin/Dashboard";
+import Profile from "./pages/admin/Profile";
 
 function App() {
   const [auth, setAuth] = useState<IContextType>(InitAuthValue);
@@ -94,6 +96,7 @@ function App() {
               }
             >
               <Route index element={<Dashboard />} />
+              <Route path={ADMIN_USER_PROFILE_ROUTE} element={<Profile />} />
             </Route>
             <Route path={WELCOME_ROUTE} element={<Welcome />} />
             <Route path={LOGIN_ROUTE} element={<Login />} />
