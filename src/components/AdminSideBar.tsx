@@ -1,4 +1,8 @@
-import { BASE_ROUTE, ADMIN_ROUTE } from "@/config/route";
+import {
+  BASE_ROUTE,
+  ADMIN_ROUTE,
+  ADMIN_PILL_STOCK_ROUTE,
+} from "@/config/route";
 import { AuthContext } from "@/context/auth";
 import { axiosInstance } from "@/utils/axios";
 import { Button } from "antd";
@@ -47,6 +51,11 @@ const AdminSideBar: React.FC = () => {
             <Link to={ADMIN_ROUTE}>
               <p className="text-center hover:bg-secondary-blue p-2">
                 Dashboard
+              </p>
+            </Link>
+            <Link to={ADMIN_PILL_STOCK_ROUTE}>
+              <p className="text-center hover:bg-secondary-blue p-2">
+                Pill Stock
               </p>
             </Link>
           </div>
