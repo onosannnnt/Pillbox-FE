@@ -19,6 +19,9 @@ const HomeLayout: React.FC<Props> = (props) => {
     if (authContext?.auth.role && !AllowRole.includes(authContext.auth.role)) {
       navigate(LOGIN_ROUTE);
     }
+    if (authContext?.auth.role === "admin") {
+      navigate("/admin");
+    }
   }, [authContext, navigate]);
 
   return (

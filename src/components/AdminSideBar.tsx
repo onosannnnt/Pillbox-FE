@@ -49,9 +49,6 @@ const AdminSideBar: React.FC = () => {
                 Dashboard
               </p>
             </Link>
-            <Link to={BASE_ROUTE}>
-              <p className="text-center hover:bg-secondary-blue p-2">Home</p>
-            </Link>
           </div>
         </div>
         <div className="flex w-full justify-center">
