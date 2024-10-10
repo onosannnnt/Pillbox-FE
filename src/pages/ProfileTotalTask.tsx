@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
 type DataType = {
-  task: string;
+  log_task: string;
   total: number;
 };
 
@@ -56,7 +56,9 @@ const ProfileTotalTask = () => {
                 className="w-full grid grid-cols-4 text-xl text-left"
                 key={index}
               >
-                <div className=" col-span-2">{transformData(item.task)}</div>
+                <div className=" col-span-2">
+                  {transformData(item.log_task)}
+                </div>
                 <div> {item.total}</div>
                 <div>ครั้ง</div>
               </div>
