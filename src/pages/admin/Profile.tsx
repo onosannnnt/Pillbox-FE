@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { axiosInstance } from "@/utils/axios";
 import ProfileTotalTask from "../ProfileTotalTask";
 import PillStock from "@/components/PillStock";
+import History from "@/components/History";
 
 type userDataType = {
   id: string;
@@ -182,7 +183,7 @@ const Profile = () => {
         </div>
         <div className="w-11/12">
           <div className="bg-white w-full h-full rounded-lg shadow-md">
-            History
+            <History />
           </div>
         </div>
       </div>
