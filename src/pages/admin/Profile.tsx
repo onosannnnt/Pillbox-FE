@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { axiosInstance } from "@/utils/axios";
+import ProfileTotalTask from "../ProfileTotalTask";
 
 type userDataType = {
   id: string;
@@ -79,7 +80,7 @@ const Profile = () => {
     <>
       <div className="h-full w-full flex flex-col items-center gap-10 py-10">
         <h1 className="text-4xl">ข้อมูลผู้ใช้งาน</h1>
-        <div className="w-full flex justify-around">
+        <div className="w-full flex justify-around items-center">
           <div className="h-full  w-3/5 flex gap-10">
             <div className="bg-white w-full h-fit rounded-lg shadow-md">
               <div className="w-full h-full flex justify-around px-3 py-10">
@@ -169,8 +170,8 @@ const Profile = () => {
               </div>
             </div>
           </div>
-          <div className="h-full w-1/5 flex gap-10">
-            <div className="bg-white w-full h-full rounded-lg shadow-md"></div>
+          <div className="h-fit w-1/4 flex gap-10">
+            <ProfileTotalTask />
           </div>
         </div>
         <div className="h-full w-full flex justify-center">
