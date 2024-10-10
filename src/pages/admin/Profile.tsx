@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { axiosInstance } from "@/utils/axios";
 import ProfileTotalTask from "../ProfileTotalTask";
+import PillStock from "@/components/PillStock";
 
 type userDataType = {
   id: string;
@@ -175,10 +176,14 @@ const Profile = () => {
           </div>
         </div>
         <div className="h-full w-full flex justify-center">
-          <div className="bg-white w-11/12 h-full rounded-lg shadow-md"></div>
+          <div className="bg-white w-11/12 h-full rounded-lg shadow-md">
+            <PillStock />
+          </div>
         </div>
         <div className="w-11/12">
-          <div className="bg-white w-full h-full rounded-lg shadow-md"></div>
+          <div className="bg-white w-full h-full rounded-lg shadow-md">
+            History
+          </div>
         </div>
       </div>
     </>
