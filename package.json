@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.45.4",
     "antd": "^5.20.0",
     "autoprefixer": "^10.4.20",
     "axios": "^1.7.3",
