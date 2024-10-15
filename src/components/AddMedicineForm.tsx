@@ -1,6 +1,7 @@
 import { uploadImage } from "@/libs/supabase";
 import { axiosInstance } from "@/utils/axios";
 import { Button, Form } from "antd";
+import TextArea from "antd/es/input/TextArea";
 import { useState } from "react";
 import Swal from "sweetalert2";
 
@@ -14,7 +15,9 @@ const AddMedicineForm = () => {
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [isLoading, setLoading] = useState<boolean>();
 
-  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFormChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setDataForm({ ...dataForm, [e.target.name]: e.target.value });
   };
 
@@ -51,8 +54,12 @@ const AddMedicineForm = () => {
   };
   return (
     <>
-      <Form onFinish={handleSubmit} layout="horizontal">
+      <Form
+        onFinish={handleSubmit}
+        className="w-1/3 border p-5 bg-white drop-shadow-lg rounded-xl"
+      >
         <Form.Item>
+          <div className="text-lg">ชื่อยา</div>
           <input
             type="text"
             name="name"
@@ -62,23 +69,30 @@ const AddMedicineForm = () => {
           />
         </Form.Item>
         <Form.Item>
-          <input
-            type="text"
+          <div className="text-lg">สรรพคุณ</div>
+          <TextArea
+            autoSize={{ minRows: 2, maxRows: 4 }}
             name="description"
-            placeholder="คำอธิบายยา"
+            placeholder="สรรพคุณ"
             className="w-full p-2 border border-gray-300 rounded-lg mb-2"
             onChange={handleFormChange}
           />
         </Form.Item>
         <Form.Item>
-          <input
-            type="text"
+          <div className="text-lg">หมายเหตุ</div>
+          <TextArea
+            autoSize={{ minRows: 2, maxRows: 4 }}
             name="note"
             placeholder="หมายเหตุ"
             className="w-full p-2 border border-gray-300 rounded-lg mb-2"
             onChange={handleFormChange}
           />
         </Form.Item>
+        {previewImage && (
+          <Form.Item className="flex justify-center">
+            <img src={previewImage} alt="preview" className="h-64" />
+          </Form.Item>
+        )}
         <Form.Item>
           <input
             type="file"

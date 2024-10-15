@@ -3,6 +3,7 @@ import { Button, Card } from "antd";
 import Swal from "sweetalert2";
 import { axiosInstance } from "@/utils/axios";
 import AddMedicineForm from "@/components/AddMedicineForm";
+import { useNavigate } from "react-router-dom";
 
 const { Meta } = Card;
 
@@ -15,6 +16,7 @@ type Medicine = {
 };
 
 const AllPill = () => {
+  const navigate = useNavigate();
   const [medicine, setMedicine] = useState<Medicine[]>([]);
   const [isAddMedicineFormVisible, setIsAddMedicineFormVisible] =
     useState(false);
@@ -66,6 +68,9 @@ const AllPill = () => {
             hoverable
             className="m-5 w-1/6"
             cover={<img alt="รูปยา" src={item.img} />}
+            onClick={() => {
+              navigate(`/admin/pill-detail/${item.id}`);
+            }}
           >
             <Meta title={item.name} description={item.description} />
           </Card>
