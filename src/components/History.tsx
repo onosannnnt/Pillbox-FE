@@ -1,7 +1,7 @@
 import Loading from "@/components/Loading";
 import { axiosInstance } from "@/utils/axios";
 import { Select, Table, TableColumnsType } from "antd";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -148,7 +148,7 @@ const History: React.FC = () => {
   }
 
   return (
-    <React.Fragment>
+    <>
       <div className="container p-8 flex flex-col gap-y-4 text-lg">
         <h1 className="text-2xl font-bold text-center">
           ประวัติการใช้งานกล่องยา
@@ -216,7 +216,7 @@ const History: React.FC = () => {
           <Table columns={historyColumns} dataSource={history} />
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 };
 

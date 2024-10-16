@@ -1,5 +1,5 @@
 import { axiosInstance } from "@/utils/axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ComposedChart,
   Bar,

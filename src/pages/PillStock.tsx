@@ -1,6 +1,6 @@
 import { axiosInstance } from "@/utils/axios";
 import { Table, TableColumnsType } from "antd";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
 type TablePillStock = {
@@ -66,14 +66,14 @@ const PillStock: React.FC = () => {
   }, []);
 
   return (
-    <React.Fragment>
+    <>
       <div className="container p-8 flex flex-col gap-y-4">
         <h1 className="text-2xl font-bold text-center">
           ประวัติการใช้งานกล่องยา
         </h1>
         <Table columns={pillStockColumns} dataSource={data} />
       </div>
-    </React.Fragment>
+    </>
   );
 };
 

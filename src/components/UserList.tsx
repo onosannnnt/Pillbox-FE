@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, Col, Row } from "antd";
 import Swal from "sweetalert2";
 import { axiosInstance } from "@/utils/axios";

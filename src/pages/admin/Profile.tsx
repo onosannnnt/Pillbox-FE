@@ -1,6 +1,6 @@
 import { Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { axiosInstance } from "@/utils/axios";

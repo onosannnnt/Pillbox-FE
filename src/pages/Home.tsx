@@ -1,7 +1,7 @@
 import Loading from "@/components/Loading";
 import { AuthContext } from "@/context/auth";
 import { axiosInstance } from "@/utils/axios";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -75,7 +75,7 @@ const Home: React.FC = () => {
   }
 
   return (
-    <React.Fragment>
+    <>
       <div className="grid place-items-center h-full w-full">
         <div className="grid grid-cols-2 h-5/6 w-3/4">
           {pill.map((item, index) => {
@@ -99,7 +99,7 @@ const Home: React.FC = () => {
           })}
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 };
 

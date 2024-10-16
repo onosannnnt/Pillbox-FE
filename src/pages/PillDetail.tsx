@@ -1,6 +1,6 @@
 import Loading from "@/components/Loading";
 import { axiosInstance } from "@/utils/axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 

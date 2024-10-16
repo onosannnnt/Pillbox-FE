@@ -4,7 +4,7 @@ import { AuthContext } from "@/context/auth";
 import { axiosInstance } from "@/utils/axios";
 import { Button, Form, Input } from "antd";
 import { isAxiosError } from "axios";
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import Swal from "sweetalert2";
 
 type UserLogin = {

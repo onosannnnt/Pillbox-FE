@@ -1,6 +1,6 @@
 import { LOGIN_ROUTE } from "@/config/route";
 import { AuthContext, TRole } from "@/context/auth";
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminSideBar from "../AdminSideBar";
 

@@ -1,6 +1,6 @@
 import { axiosInstance } from "@/utils/axios";
 import { Table } from "antd";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import Swal from "sweetalert2";
 

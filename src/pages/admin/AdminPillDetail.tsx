@@ -1,7 +1,7 @@
 import { axiosInstance } from "@/utils/axios";
 import { Button, Form } from "antd";
 import TextArea from "antd/es/input/TextArea";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
