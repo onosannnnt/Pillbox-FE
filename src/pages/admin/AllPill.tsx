@@ -32,7 +32,6 @@ const AllPill = () => {
       });
     }
   };
-
   useEffect(() => {
     fetchMedicines();
   }, []);

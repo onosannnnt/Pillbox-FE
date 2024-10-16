@@ -39,6 +39,8 @@ const AddMedicineForm = () => {
           title: "เพิ่มข้อมูลยาสำเร็จ",
           showConfirmButton: false,
           timer: 1500,
+        }).then(() => {
+          window.location.reload();
         });
       }
       setLoading(false);
