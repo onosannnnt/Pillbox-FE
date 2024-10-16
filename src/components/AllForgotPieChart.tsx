@@ -80,15 +80,20 @@ const AllForgotPieChart = () => {
                 dataKey="forget"
                 // label={({ value }) => `${getPercentage(value, allTotal)}%`} // Display percentage in the label
               >
-                {forgetData.map((entry, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={COLORS[index % COLORS.length]}
-                  />
-                ))}
+                {forgetData.map(
+                  (entry, index) => (
+                    console.log(entry),
+                    (
+                      <Cell
+                        key={`cell-${index}`}
+                        fill={COLORS[index % COLORS.length]}
+                      />
+                    )
+                  )
+                )}
               </Pie>
               <Tooltip
-                formatter={(value, name, props) => [
+                formatter={(value, _payload, props) => [
                   `${getPercentage(Number(value), allTotal)}%`,
                   `${props.payload.firstName || props.payload.user_username}`,
                 ]}

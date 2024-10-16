@@ -1,4 +1,3 @@
-import React from "react";
 import AllForgot from "@/components/AllForgot";
 import AllForgotPieChart from "@/components/AllForgotPieChart";
 import LatestActive from "@/components/LatestActive";

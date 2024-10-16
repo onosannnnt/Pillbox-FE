@@ -25,7 +25,7 @@ const HomeLayout: React.FC<Props> = (props) => {
   }, [authContext, navigate]);
 
   return (
-    <React.Fragment>
+    <>
       <div className="flex w-full">
         <div className="sticky left-0 top-0 h-screen bg-white">
           <SideBar />
@@ -34,7 +34,7 @@ const HomeLayout: React.FC<Props> = (props) => {
           {props.children}
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 };
 
