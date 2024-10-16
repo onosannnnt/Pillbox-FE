@@ -48,12 +48,15 @@ const Home: React.FC = () => {
       });
       setPill(initData);
       setIsLoading(false);
-    } catch {
-      Swal.fire({
-        icon: "error",
-        title: "เกิดข้อผิดพลาด",
-        text: "กรุณาลองใหม่อีกครั้ง",
-      });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      if (error.response.status !== 401) {
+        Swal.fire({
+          icon: "error",
+          title: "เกิดข้อผิดพลาด",
+          text: "กรุณาลองใหม่อีกครั้ง",
+        });
+      }
     }
   };
 
