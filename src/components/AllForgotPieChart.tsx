@@ -1,4 +1,5 @@
 import { axiosInstance } from "@/utils/axios";
+import { Table } from "antd";
 import React, { useEffect, useState } from "react";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import Swal from "sweetalert2";
@@ -10,6 +11,22 @@ type dataType = {
   user: string;
   forget: number;
 };
+
+const tableColumn = [
+  {
+    title: "ชื่อ",
+    dataIndex: "firstName",
+    key: "firstName",
+    render: (text: string, record: dataType) => {
+      return text || record.user_username;
+    },
+  },
+  {
+    title: "จำนวน",
+    dataIndex: "forget",
+    key: "forget",
+  },
+];
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
@@ -80,14 +97,19 @@ const AllForgotPieChart = () => {
               />{" "}
             </PieChart>
           </ResponsiveContainer>
-          <div className="flex flex-col justify-around divide-y-2 divide-gray-950 overflow-y-scroll">
+          {/* <div className="flex flex-col justify-around divide-y-2 divide-gray-950 overflow-y-scroll">
             {forgetData.map((item, index) => (
               <div key={index} className="flex justify-between ">
                 <div>{item.firstName || item.user_username || item.user}</div>
                 <div>{item.forget} ครั้ง</div>
               </div>
             ))}
-          </div>
+          </div> */}
+          <Table
+            columns={tableColumn}
+            dataSource={forgetData}
+            pagination={{ pageSize: 5 }}
+          />
         </div>
       </div>
     </>

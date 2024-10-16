@@ -1,4 +1,5 @@
 import { axiosInstance } from "@/utils/axios";
+import { Table } from "antd";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
@@ -8,6 +9,40 @@ type dataType = {
   user: string;
   latestActive: Date;
 };
+
+const tableColumn = [
+  {
+    title: "ชื่อ",
+    dataIndex: "firstName",
+    key: "firstName",
+    render: (text: string, record: dataType) => {
+      return text || record.user_username;
+    },
+  },
+  {
+    title: "วันที่",
+    dataIndex: "latestActive",
+    key: "latestActive",
+    render: (text: Date) => {
+      return new Date(text).toLocaleString("th-TH", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+    },
+  },
+  {
+    title: "เวลา",
+    dataIndex: "latestActive",
+    key: "latestActive",
+    render: (text: Date) => {
+      return new Date(text).toLocaleTimeString("th-TH", {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+    },
+  },
+];
 
 const LatestActive = () => {
   const [data, setData] = useState<dataType[]>([]);
@@ -35,7 +70,7 @@ const LatestActive = () => {
       <div className="w-full h-full bg-white rounded-lg p-5">
         <div className="w-full h-full flex flex-col">
           <div className="text-center text-2xl">การใช้งานล่าสุด</div>
-          <div className="flex flex-col justify-around h-full overflow-y-scroll">
+          {/* <div className="flex flex-col justify-around h-full overflow-y-scroll">
             <div>
               <div className="grid grid-cols-3 font-bold">
                 <div className="text-center">ชื่อ</div>
@@ -66,7 +101,12 @@ const LatestActive = () => {
                   </div>
                 );
               })}
-          </div>
+          </div> */}
+          <Table
+            columns={tableColumn}
+            dataSource={data}
+            pagination={{ pageSize: 5 }}
+          />
         </div>
       </div>
     </>
