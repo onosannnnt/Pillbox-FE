@@ -2,7 +2,7 @@ import customizeRequiredMark from "@/components/customizeRequiredMark";
 import { BASE_ROUTE } from "@/config/route";
 import { AuthContext } from "@/context/auth";
 import { axiosInstance } from "@/utils/axios";
-import { Button, Form, Input, Typography } from "antd";
+import { Button, Form, Input } from "antd";
 import { isAxiosError } from "axios";
 import React, { useContext, useEffect } from "react";
 import Swal from "sweetalert2";
@@ -14,7 +14,6 @@ type UserLogin = {
 
 const Login: React.FC = () => {
   const [form] = Form.useForm();
-  const { Title } = Typography;
   const authContext = useContext(AuthContext);
   const onFinish = async () => {
     try {
@@ -73,9 +72,9 @@ const Login: React.FC = () => {
             />
           </div>
           <div>
-            <Title level={2} className="text-center">
+            <h1 className="text-center text-3xl pb-5">
               เข้าสู่ระบบเพื่อใช้งาน
-            </Title>
+            </h1>
             <Form
               form={form}
               layout="vertical"
@@ -110,6 +109,14 @@ const Login: React.FC = () => {
                 ]}
               >
                 <Input placeholder="Password" type="password" size="large" />
+              </Form.Item>
+              <Form.Item>
+                <Button
+                  type="link"
+                  className="text-primary-blue text-lg text-center"
+                >
+                  ลงทะเบียน
+                </Button>
               </Form.Item>
               <Button
                 type="primary"
