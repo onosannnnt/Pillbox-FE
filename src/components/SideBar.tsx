@@ -11,6 +11,7 @@ import { Button } from "antd";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import klongyaa from "@/assets/klongyaa.png";
 
 const SideBar: React.FC = () => {
   const auth = useContext(AuthContext);
@@ -44,7 +45,7 @@ const SideBar: React.FC = () => {
       <div className="bg-primary-blue text-black flex h-full w-80 flex-col justify-between py-[4rem]">
         <div className="flex flex-col justify-center">
           <img
-            src="klongyaa.png"
+            src={klongyaa}
             alt="icon"
             className="w-64 aspect-square self-center"
           />
