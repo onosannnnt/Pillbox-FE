@@ -62,8 +62,9 @@ const AllPill = () => {
         {isAddMedicineFormVisible ? <AddMedicineForm /> : <div></div>}
       </div>
       <div className="flex flex-wrap">
-        {medicine.map((item) => (
+        {medicine.map((item, index) => (
           <Card
+            key={index}
             hoverable
             className="m-5 w-1/6"
             cover={<img alt="รูปยา" src={item.img} />}

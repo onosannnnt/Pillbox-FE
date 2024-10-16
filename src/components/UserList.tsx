@@ -43,8 +43,8 @@ const UserList = () => {
     <>
       <h1 className="text-3xl text-center py-5">รายชื่อผู้ใช้งานกล่องยา</h1>
       <Row gutter={[16, 16]}>
-        {data.map((user) => (
-          <Col span={8}>
+        {data.map((user, index) => (
+          <Col span={8} key={index}>
             <Card
               title={
                 user.firstName && user.lastName ? (
