@@ -42,7 +42,6 @@ const ProfileTotalTask = () => {
 
   useEffect(() => {
     fetchData();
-    console.log(data);
   }, []);
 
   return (

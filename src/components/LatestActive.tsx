@@ -62,7 +62,6 @@ const LatestActive = () => {
 
   useEffect(() => {
     fetchData();
-    console.log(`latest Active`, data);
   }, []);
 
   return (

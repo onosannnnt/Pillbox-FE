@@ -134,7 +134,6 @@ const History: React.FC = () => {
 
   useEffect(() => {
     getHistory();
-    console.log(history);
     setLoading(false);
   }, [period]);
 

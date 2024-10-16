@@ -25,7 +25,6 @@ const UserList = () => {
       const response = await axiosInstance.get("/admin/getAllUser");
       setData(response.data);
       setLoading(false);
-      console.log(response.data);
     } catch {
       Swal.fire({
         icon: "error",

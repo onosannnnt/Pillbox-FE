@@ -26,7 +26,6 @@ const AdminPillDetail = () => {
   const fetchPill = async () => {
     try {
       const response = await axiosInstance.get(`/admin/getMedicine/${pillID}`);
-      console.log(response.data);
       setPill(response.data);
       setDataForm(response.data);
     } catch {

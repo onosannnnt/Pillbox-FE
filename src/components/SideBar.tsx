@@ -29,13 +29,12 @@ const SideBar: React.FC = () => {
       }).then(() => {
         window.location.href = BASE_ROUTE;
       });
-    } catch (error) {
+    } catch {
       Swal.fire({
         icon: "error",
         title: "ระบบขัดข้อง",
         text: "กรุณาลองใหม่อีกครั้ง",
       });
-      console.log(error);
       return;
     }
   };

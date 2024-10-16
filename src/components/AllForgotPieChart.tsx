@@ -40,7 +40,6 @@ const AllForgotPieChart = () => {
   const fetchAllForgot = async () => {
     try {
       const response = await axiosInstance.get("/admin/getAllForgetHistory");
-      console.log(response.data);
       setAllTotal(
         response.data.reduce(
           (sum: number, entry: dataType) =>
@@ -49,7 +48,6 @@ const AllForgotPieChart = () => {
         )
       );
       setForgetData(response.data);
-      console.log(allTotal);
     } catch {
       Swal.fire({
         title: "Error!",

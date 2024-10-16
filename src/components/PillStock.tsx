@@ -56,7 +56,6 @@ const PillStock: React.FC = () => {
         `/admin/getUserPillChannel/${username}`
       );
       setData(data);
-      console.log(data);
     } catch {
       Swal.fire({
         icon: "error",

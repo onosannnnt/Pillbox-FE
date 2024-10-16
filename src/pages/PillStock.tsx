@@ -52,7 +52,6 @@ const PillStock: React.FC = () => {
     try {
       const { data } = await axiosInstance.get("/user/getPillChannels");
       setData(data);
-      console.log(data);
     } catch {
       Swal.fire({
         icon: "error",

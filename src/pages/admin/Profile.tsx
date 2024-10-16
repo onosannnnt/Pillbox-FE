@@ -29,7 +29,6 @@ const Profile = () => {
     try {
       const response = await axiosInstance.get(`/admin/getUser/${username}`);
       setUserData(response.data);
-      console.log(response.data);
     } catch {
       Swal.fire({
         icon: "error",
@@ -46,7 +45,6 @@ const Profile = () => {
         `/admin/editUser/${userData?.id}`,
         userData
       );
-      console.log(response);
       if (response.status === 200) {
         Swal.fire({
           icon: "success",
@@ -57,12 +55,11 @@ const Profile = () => {
           Navigate("/admin");
         });
       }
-    } catch (error) {
-      console.log(error);
+    } catch {
       Swal.fire({
         icon: "error",
         title: "เกิดข้อผิดพลาด",
-        text: "ไม่สามารถบันทึกข้อมูลได้",
+        text: "ไม่สามารถบันทึกข้อมูลได้ กรุณาลองใหม่อีกครั้ง",
       });
     }
   };

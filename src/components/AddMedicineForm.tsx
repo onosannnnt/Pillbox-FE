@@ -28,7 +28,6 @@ const AddMedicineForm = () => {
         throw new Error("กรุณาเลือกรูปภาพ");
       }
       const imageUrl = await uploadImage("medicine", image);
-      console.log(imageUrl);
       const response = await axiosInstance.post("/admin/addMedicine", {
         ...dataForm,
         img: imageUrl,

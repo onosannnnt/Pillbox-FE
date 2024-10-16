@@ -25,7 +25,6 @@ const AllForgot = () => {
   const fetchAllForgot = async () => {
     try {
       const response = await axiosInstance.get("/admin/getWeeklyForgotAllUser");
-      console.log(response.data);
       if (response.status === 200) {
         setData(response.data);
       }
