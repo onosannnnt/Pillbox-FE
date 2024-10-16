@@ -110,14 +110,6 @@ const Login: React.FC = () => {
               >
                 <Input placeholder="Password" type="password" size="large" />
               </Form.Item>
-              <Form.Item>
-                <Button
-                  type="link"
-                  className="text-primary-blue text-lg text-center"
-                >
-                  ลงทะเบียน
-                </Button>
-              </Form.Item>
               <Button
                 type="primary"
                 htmlType="submit"
