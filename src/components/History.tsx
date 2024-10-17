@@ -178,10 +178,10 @@ const History: React.FC = () => {
         </div>
         <div className="bg-white rounded-xl grid grid-cols-2 py-4 px-2">
           <div className="grid grid-rows-2">
-            <p className="text-center font-semibold text-2xl">
+            <p className="text-center font-semibold lg:text-2xl text-md">
               สรุปการรับประทานยา/การลืมรับประทานยา
             </p>
-            <div className="grid grid-cols-2">
+            <div className="grid lg:grid-cols-2">
               <p className="content-center text-center">
                 แจ้งเตือนการทานยาทั้งหมด
               </p>
