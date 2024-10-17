@@ -3,6 +3,7 @@ import { AuthContext, TRole } from "@/context/auth";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminSideBar from "../AdminSideBar";
+import AdminNavbar from "../AdminNavbar";
 
 type Props = {
   children: React.ReactNode;
@@ -23,11 +24,19 @@ const AdminLayout: React.FC<Props> = (props) => {
 
   return (
     <>
-      <div className="flex w-full">
+      <div className="w-full hidden lg:flex">
         <div className="sticky left-0 top-0 h-screen bg-white">
           <AdminSideBar />
         </div>
         <div className="w-full m-[2rem] rounded-2xl bg-secondary-blue bg-opacity-25">
+          {props.children}
+        </div>
+      </div>
+      <div className="lg:hidden">
+        <div className="left-0 top-0 bg-white">
+          <AdminNavbar />
+        </div>
+        <div className="bg-secondary-blue bg-opacity-25 w-screen h-screen">
           {props.children}
         </div>
       </div>

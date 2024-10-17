@@ -1,9 +1,7 @@
 import {
   BASE_ROUTE,
-  HISTORY_ROUTE,
-  FORGOTTEN_RATE_ROUTE,
-  PILL_STOCK_ROUTE,
   ADMIN_ROUTE,
+  ADMIN_PILL_STOCK_ROUTE,
 } from "@/config/route";
 import { AuthContext } from "@/context/auth";
 import { axiosInstance } from "@/utils/axios";
@@ -14,7 +12,7 @@ import Swal from "sweetalert2";
 import klongyaa from "@/assets/klongyaa.png";
 import { UpOutlined, DownOutlined } from "@ant-design/icons";
 
-const Navbar: React.FC = () => {
+const AdminNavbar: React.FC = () => {
   const auth = useContext(AuthContext);
   const [visible, setVisible] = useState(false);
   const handleLogout = async () => {
@@ -59,23 +57,12 @@ const Navbar: React.FC = () => {
               mode="inline"
               className="bg-primary-blue text-black flex flex-col w-full text-center"
             >
-              <Menu.Item key="home">
-                <Link to={BASE_ROUTE}>Home</Link>
+              <Menu.Item key="Dashborrd">
+                <Link to={ADMIN_ROUTE}>ภาพรวม</Link>
               </Menu.Item>
-              <Menu.Item key="history">
-                <Link to={HISTORY_ROUTE}>History</Link>
+              <Menu.Item key="PillStock">
+                <Link to={ADMIN_PILL_STOCK_ROUTE}>คลังยา</Link>
               </Menu.Item>
-              <Menu.Item key="forgotten-rate">
-                <Link to={FORGOTTEN_RATE_ROUTE}>Forgotten Rate</Link>
-              </Menu.Item>
-              <Menu.Item key="pill-stock">
-                <Link to={PILL_STOCK_ROUTE}>Pill Stock</Link>
-              </Menu.Item>
-              {auth?.auth.role === "admin" && (
-                <Menu.Item key="admin">
-                  <Link to={ADMIN_ROUTE}>Admin</Link>
-                </Menu.Item>
-              )}
               <Menu.Item key="logout" style={{ float: "right" }}>
                 <Button
                   type="primary"
@@ -96,4 +83,4 @@ const Navbar: React.FC = () => {
   );
 };
 
-export default Navbar;
+export default AdminNavbar;

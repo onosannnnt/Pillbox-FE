@@ -6,13 +6,13 @@ import UserList from "@/components/UserList";
 const Dashboard = () => {
   return (
     <>
-      <div className="h-full w-full flex flex-col items-center gap-10 py-10">
+      <div className="h-full w-full lg:flex flex-col items-center gap-10 py-10 grid grid-cols-1 place-items-center">
         <h1 className="text-4xl">ภาพรวม</h1>
-        <div className="w-full flex justify-around">
-          <div className="h-full  w-2/5 flex gap-10">
+        <div className="w-full lg:flex justify-around grid grid-cols-1 ">
+          <div className="h-full w-full lg:w-2/5 flex gap-10">
             <AllForgotPieChart />
           </div>
-          <div className="h-full w-2/5 flex gap-10">
+          <div className="h-full w-full lg:w-2/5 flex gap-10">
             <LatestActive />
           </div>
         </div>
