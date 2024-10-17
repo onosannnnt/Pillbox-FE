@@ -3,6 +3,7 @@ import { LOGIN_ROUTE } from "@/config/route";
 import { AuthContext, TRole } from "@/context/auth";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../Navbar";
 
 type Props = {
   children: React.ReactNode;
@@ -26,11 +27,19 @@ const HomeLayout: React.FC<Props> = (props) => {
 
   return (
     <>
-      <div className="flex w-full">
+      <div className="w-full hidden lg:flex">
         <div className="sticky left-0 top-0 h-screen bg-white">
           <SideBar />
         </div>
         <div className="w-full m-[2rem] rounded-2xl bg-secondary-blue bg-opacity-25">
+          {props.children}
+        </div>
+      </div>
+      <div className="lg:hidden">
+        <div className="left-0 top-0 bg-white">
+          <Navbar />
+        </div>
+        <div className="bg-secondary-blue bg-opacity-25 w-screen h-screen">
           {props.children}
         </div>
       </div>
