@@ -155,7 +155,7 @@ const History: React.FC = () => {
         </h1>
         <div className="flex w-full justify-end">
           <Select
-            className="w-64"
+            className="lg:w-64 w-full"
             size="large"
             placeholder="เลือกเดือน"
             defaultValue={"week"}
@@ -176,16 +176,16 @@ const History: React.FC = () => {
             onChange={(value) => setPeriod(value)}
           />
         </div>
-        <div className="bg-white rounded-xl grid grid-cols-2 py-4 px-2">
+        <div className="bg-white rounded-xl grid lg:grid-cols-2 grid-cols-1 py-4 px-2">
           <div className="grid grid-rows-2">
-            <p className="text-center font-semibold lg:text-2xl text-md">
+            <p className="text-center font-semibold lg:text-2xl text-lg">
               สรุปการรับประทานยา/การลืมรับประทานยา
             </p>
-            <div className="grid lg:grid-cols-2">
+            <div className="grid grid-cols-2">
               <p className="content-center text-center">
                 แจ้งเตือนการทานยาทั้งหมด
               </p>
-              <div className="flex justify-center">
+              <div className="flex justify-center p-2 lg:p-0">
                 <p className="bg-secondary-blue py-2 px-4 border-black rounded-xl drop-shadow-md">
                   {history.filter((item) => item.task === "alert").length} ครั้ง
                 </p>

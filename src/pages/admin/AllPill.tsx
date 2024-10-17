@@ -37,12 +37,12 @@ const AllPill = () => {
   }, []);
   return (
     <div className="w-full flex flex-col">
-      <h1 className="text-3xl text-center">รายชื่อยาทั้งหมด</h1>
+      <h1 className="text-3xl text-center pt-5">รายชื่อยาทั้งหมด</h1>
       <div className="flex justify-end">
         {isAddMedicineFormVisible ? (
           <Button
             onClick={() => setIsAddMedicineFormVisible(false)}
-            className="m-5 w-1/12"
+            className="m-5 lg:w-1/12"
             type="primary"
             danger
           >
@@ -51,7 +51,7 @@ const AllPill = () => {
         ) : (
           <Button
             onClick={() => setIsAddMedicineFormVisible(true)}
-            className="m-5 w-1/12"
+            className="m-5 lg:w-1/12"
             type="primary"
           >
             เพิ่มข้อมูลยา
@@ -61,12 +61,12 @@ const AllPill = () => {
       <div className="flex justify-center">
         {isAddMedicineFormVisible ? <AddMedicineForm /> : <div></div>}
       </div>
-      <div className="flex flex-wrap">
+      <div className="lg:flex flex-wrap">
         {medicine.map((item, index) => (
           <Card
             key={index}
             hoverable
-            className="m-5 w-1/6"
+            className="m-5 lg:w-1/6 w-2/5"
             cover={<img alt="รูปยา" src={item.img} />}
             onClick={() => {
               navigate(`/admin/pill-detail/${item.id}`);

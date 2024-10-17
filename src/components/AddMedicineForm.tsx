@@ -57,7 +57,7 @@ const AddMedicineForm = () => {
     <>
       <Form
         onFinish={handleSubmit}
-        className="w-1/3 border p-5 bg-white drop-shadow-lg rounded-xl"
+        className="lg:w-1/3 border p-5 bg-white drop-shadow-lg rounded-xl"
       >
         <Form.Item>
           <div className="text-lg">ชื่อยา</div>

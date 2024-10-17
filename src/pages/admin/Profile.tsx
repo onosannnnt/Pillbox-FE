@@ -1,4 +1,4 @@
-import { Avatar } from "antd";
+import { Avatar, Form } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -79,19 +79,18 @@ const Profile = () => {
     <>
       <div className="h-full w-full flex flex-col items-center gap-10 py-10">
         <h1 className="text-4xl">ข้อมูลผู้ใช้งาน</h1>
-        <div className="w-full flex justify-around items-center">
-          <div className="h-full  w-3/5 flex gap-10">
+        <div className="w-full grid grid-cols-1 lg:flex justify-around items-center">
+          <div className="h-full w-full lg:w-3/5 flex gap-10">
             <div className="bg-white w-full h-fit rounded-lg shadow-md">
-              <div className="w-full h-full flex justify-around px-3 py-10">
-                <div className="flex flex-col justify-center items-center w-1/2">
+              <div className="w-full h-full lg:flex justify-center lg:justify-around px-3 py-10 hidden">
+                <div className="grid lg:flex flex-col justify-center items-center w-1/2">
                   <Avatar shape="square" size={200} icon={<UserOutlined />} />
                 </div>
                 <form
                   className="w-3/4 h-full flex flex-col items-center justify-around text-xl"
                   onSubmit={handleOnSubmit}
                 >
-                  <div className="grid grid-cols-2 gap-y-5">
-                    {" "}
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-5">
                     <div className="flex flex-col">
                       <label className="text-2xl">ชื่อจริง</label>
                       <input
@@ -149,17 +148,16 @@ const Profile = () => {
                       />
                     </div>
                   </div>
-
                   <div className="w-full h-full flex justify-end gap-5 px-10">
                     <button
-                      className="w-1/6 rounded-md text-red-500 border border-red-500 p-2 hover:bg-red-500 hover:text-white"
+                      className="lg:w-1/6 w-full rounded-md text-red-500 border border-red-500 p-2 hover:bg-red-500 hover:text-white"
                       type="reset"
                       onClick={() => fetchUserData()}
                     >
                       ยกเลิก
                     </button>
                     <button
-                      className="w-1/6 rounded-md text-green-500 border border-green-500 p-2 hover:bg-green-500 hover:text-white"
+                      className="lg:w-1/6 w-full rounded-md text-green-500 border border-green-500 p-2 hover:bg-green-500 hover:text-white"
                       type="submit"
                     >
                       บันทึก
@@ -167,9 +165,73 @@ const Profile = () => {
                   </div>
                 </form>
               </div>
+              <div className="lg:hidden">
+                <Form
+                  className="p-10"
+                  layout="vertical"
+                  onSubmitCapture={handleOnSubmit}
+                >
+                  <Form.Item>
+                    <label>ชื่อจริง</label>
+                    <input
+                      type="text"
+                      name="firstName"
+                      value={userData?.firstName ?? ""}
+                      onChange={handleOnChange}
+                      className="w-full p-2 border-2 border-gray-300 rounded-md"
+                    />
+                  </Form.Item>
+                  <Form.Item>
+                    <label>นามสกุล</label>
+                    <input
+                      type="text"
+                      name="lastName"
+                      value={userData?.lastName ?? ""}
+                      onChange={handleOnChange}
+                      className="w-full p-2 border-2 border-gray-300 rounded-md"
+                    />
+                  </Form.Item>
+                  <Form.Item>
+                    <label>บัญชีผู้ใช้งาน</label>
+                    <input
+                      type="text"
+                      name="username"
+                      value={userData?.username}
+                      onChange={handleOnChange}
+                      className="w-full p-2 border-2 border-gray-300 rounded-md"
+                    />
+                  </Form.Item>
+                  <Form.Item>
+                    <label>อีเมลล์</label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={userData?.email}
+                      onChange={handleOnChange}
+                      className="w-full p-2 border-2 border-gray-300 rounded-md"
+                    />
+                  </Form.Item>
+                  <Form.Item>
+                    <label>จำนวนช่องในกล่องยา</label>
+                    <input
+                      type="text"
+                      name="lineID"
+                      value={userData?.numberOfPillChannels}
+                      onChange={handleOnChange}
+                      className="w-full p-2 border-2 border-gray-300 rounded-md"
+                    />
+                  </Form.Item>
+                  <button
+                    type="submit"
+                    className="w-full bg-primary-blue text-white p-2 rounded-md"
+                  >
+                    บันทึก
+                  </button>
+                </Form>
+              </div>
             </div>
           </div>
-          <div className="h-fit w-1/4 flex gap-10">
+          <div className="h-fit w-full lg:w-1/4 flex gap-10">
             <ProfileTotalTask />
           </div>
         </div>

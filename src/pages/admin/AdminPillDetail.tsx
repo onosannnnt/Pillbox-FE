@@ -97,13 +97,24 @@ const AdminPillDetail = () => {
   }, []);
   return (
     <>
-      <div className="w-full h-full">
-        <h1 className="text-3xl text-center">รายละเอียดยา</h1>
-        <div className="flex justify-center h-1/2">
-          <img src={pill?.img} alt={pill?.name} />
+      <div className="w-full">
+        <h1 className="text-3xl text-center p-5">รายละเอียดยา</h1>
+        <div className="lg:flex justify-center h-1/2 ">
+          <div className="flex justify-center">
+            <img
+              className="w-1/3 flex lg:hidden justify-center"
+              src={pill?.img}
+              alt={pill?.name}
+            />
+          </div>
+          <img
+            className="w-1/3 hidden lg:flex"
+            src={pill?.img}
+            alt={pill?.name}
+          />
           <Form
             onFinish={handleSubmit}
-            className="w-1/3 border p-5 bg-white drop-shadow-lg rounded-xl"
+            className="lg:w-1/3 border p-5 bg-white drop-shadow-lg rounded-xl "
           >
             <Form.Item>
               <div className="text-lg">ชื่อยา</div>
