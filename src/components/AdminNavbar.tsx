@@ -50,7 +50,7 @@ const AdminNavbar: React.FC = () => {
           />
           <h1 className="text-left pt-10 p-5 text-4xl">กล่องยา</h1>
         </div>
-        <h2 className=" text-left pl-5 pb-5 text-xl">{auth?.auth.username}</h2>
+        <h2 className=" text-center pb-5 text-xl">{auth?.auth.username}</h2>
         {visible && (
           <>
             <Menu
