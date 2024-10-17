@@ -6,6 +6,7 @@ import { Button, Form, Input } from "antd";
 import { isAxiosError } from "axios";
 import { useContext, useEffect } from "react";
 import Swal from "sweetalert2";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
 
 type UserLogin = {
   username: string;
@@ -63,39 +64,40 @@ const Login: React.FC = () => {
   return (
     <>
       <main className="bg-primary-blue h-screen py-16">
-        <div className="container mx-auto bg-white rounded-md h-full grid grid-cols-2 place-items-center">
+        <div className="container mx-auto bg-white rounded-md h-full flex flex-col justify-start p-20 items-center lg:grid lg:grid-cols-2 lg:place-items-center">
           <div>
             <img
               src="/klongyaa.png"
               alt="welcome"
-              className="w-full h-full object-contain max-w-[32rem] aspect-square"
+              className="w-full h-full object-contain max-w-[16rem] lg:max-w-[32rem] aspect-square lg:aspect-none"
             />
           </div>
-          <div>
+          <div className="w-full flex flex-col justify-center items-center  ">
             <h1 className="text-center text-3xl pb-5">
               เข้าสู่ระบบเพื่อใช้งาน
             </h1>
             <Form
+              name="login"
               form={form}
-              layout="vertical"
-              scrollToFirstError
+              size="large"
+              initialValues={{ remember: true }}
+              style={{ maxWidth: 360 }}
               onFinish={onFinish}
               requiredMark={customizeRequiredMark}
+              className="w-full"
             >
               <Form.Item
-                label={<p className="text-2xl">ชื่อผู้ใช้</p>}
                 name="username"
                 rules={[
                   {
                     required: true,
-                    message: "กรุณากรอกชื่อผู้ใช้",
+                    message: "กรุณาใส่ชื่อผู้ใช้งานหรืออีเมลล์",
                   },
                 ]}
               >
-                <Input placeholder="Username" size="large" />
+                <Input prefix={<UserOutlined />} placeholder="Username" />
               </Form.Item>
               <Form.Item
-                label={<p className="text-2xl">รหัสผ่าน</p>}
                 name="password"
                 rules={[
                   {
@@ -108,15 +110,17 @@ const Login: React.FC = () => {
                   },
                 ]}
               >
-                <Input placeholder="Password" type="password" size="large" />
+                <Input
+                  prefix={<LockOutlined />}
+                  type="password"
+                  placeholder="Password"
+                />
               </Form.Item>
-              <Button
-                type="primary"
-                htmlType="submit"
-                className="w-full py-2 px-3 bg-secondary-blue rounded-2xl text-xl text-center"
-              >
-                เข้าสู่ระบบ
-              </Button>
+              <Form.Item>
+                <Button block type="primary" htmlType="submit">
+                  เข้าสู่ระบบ
+                </Button>
+              </Form.Item>
             </Form>
           </div>
         </div>
