@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Card, Col, Row } from "antd";
+import { Card } from "antd";
 import Swal from "sweetalert2";
 import { axiosInstance } from "@/utils/axios";
 import { useNavigate } from "react-router-dom";
@@ -42,43 +42,42 @@ const UserList = () => {
   return (
     <>
       <h1 className="text-3xl text-center py-5">รายชื่อผู้ใช้งานกล่องยา</h1>
-      <Row gutter={[16, 16]}>
-        {data.map((user, index) => (
-          <Col span={8} key={index}>
-            <Card
-              title={
-                user.firstName && user.lastName ? (
-                  <span className="text-xl">
-                    {user.firstName} {user.lastName}
-                  </span>
-                ) : (
-                  <span className="text-xl">{user.username}</span>
-                )
-              }
-              bordered={false}
-              loading={isLoading}
-              onClick={() => handleOnClick(user)}
-              className="cursor-pointer text-lg"
-            >
-              <p>
-                ชื่อ:{" "}
-                {user.firstName || (
-                  <span className="text-red-600">"ยังไม่ได้ระบุชื่อจริง"</span>
-                )}
-              </p>
-              <p>
-                นามสกุล:{" "}
-                {user.lastName || (
-                  <span className="text-red-600">"ยังไม่ได้ระบุนามสกุล"</span>
-                )}
-              </p>
-              <p>อีเมล: {user.email}</p>
-              <p>ชื่อผู้ใช้: {user.username}</p>
-              <p>จำนวนช่องในกล่องยา: {user.numberOfPillChannels}</p>
-            </Card>
-          </Col>
+      <div className="grid lg:grid-cols-4 gap-5 grid-cols-1">
+        {" "}
+        {data.map((user) => (
+          <Card
+            title={
+              user.firstName && user.lastName ? (
+                <span className="text-xl">
+                  {user.firstName} {user.lastName}
+                </span>
+              ) : (
+                <span className="text-xl">{user.username}</span>
+              )
+            }
+            bordered={false}
+            loading={isLoading}
+            onClick={() => handleOnClick(user)}
+            className="cursor-pointer text-lg"
+          >
+            <p>
+              ชื่อ:{" "}
+              {user.firstName || (
+                <span className="text-red-600">"ยังไม่ได้ระบุชื่อจริง"</span>
+              )}
+            </p>
+            <p>
+              นามสกุล:{" "}
+              {user.lastName || (
+                <span className="text-red-600">"ยังไม่ได้ระบุนามสกุล"</span>
+              )}
+            </p>
+            <p>อีเมล: {user.email}</p>
+            <p>ชื่อผู้ใช้: {user.username}</p>
+            <p>จำนวนช่องในกล่องยา: {user.numberOfPillChannels}</p>
+          </Card>
         ))}
-      </Row>
+      </div>
     </>
   );
 };
