@@ -37,10 +37,10 @@ const Login: React.FC = () => {
       });
     } catch (error) {
       if (isAxiosError(error)) {
-        if (error.response?.status === 401) {
+        if (error.response?.status === 404) {
           Swal.fire({
             icon: "error",
-            title: "เข้าสู่ระบบไม่สำเร็จ",
+            title: "บัญชีผู้ใช้หรือรหัสผ่านไม่ถูกต้อง",
             text: "กรุณาลองใหม่อีกครั้ง",
           });
           return;
