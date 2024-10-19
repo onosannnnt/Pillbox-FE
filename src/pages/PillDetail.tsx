@@ -3,6 +3,7 @@ import { axiosInstance } from "@/utils/axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import parse from "html-react-parser";
 
 type pillData = {
   id: string;
@@ -106,14 +107,16 @@ const PillDetail = () => {
               สรรพคุณ :{" "}
             </b>
             <div className="text-lg lg:text-2xl">
-              {pill?.medicine.description}
+              {parse(pill?.medicine.description) || ""}
             </div>
           </div>
           <div className="flex w-full lg:w-1/2 px-10 py-4 justify-center lg:justify-normal">
             <b className="font-bold text-lg lg:text-2xl px-6 text-right">
               หมายเหตุ :{" "}
             </b>
-            <div className="text-lg lg:text-2xl">{pill?.medicine.note}</div>
+            <div className="text-lg lg:text-2xl">
+              {parse(pill?.medicine.note || "")}
+            </div>
           </div>
           <div className="flex w-1/2 px-10 py-4">
             <img src={pill?.medicine.img}></img>
