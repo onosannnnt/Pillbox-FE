@@ -31,7 +31,9 @@ const pillStockColumns: TableColumnsType<TablePillStock> = [
     title: "ชื่อยาสามัญ",
     dataIndex: "medicine",
     key: "medicine",
-    render: (medicine) => <span>{medicine.medicalname}</span>,
+    render: (medicine) => (
+      <span>{medicine.name ? medicine.name : medicine.medicalname}</span>
+    ),
   },
   {
     title: "จำนวนยาทั้งหมด",
