@@ -124,7 +124,11 @@ const Forgotten: FC = () => {
           >
             {medicine.map((item) => (
               <Select.Option key={item.id} value={item.name}>
-                {item.name === "all" ? "ทั้งหมด" : item.name}
+                {item.name === "all"
+                  ? "ทั้งหมด"
+                  : item.name
+                  ? item.name
+                  : item.medicalname}
               </Select.Option>
             ))}
           </Select>
