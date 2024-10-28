@@ -120,15 +120,11 @@ const Forgotten: FC = () => {
           <Select
             defaultValue="all"
             style={{ width: "20%" }}
-            // options={medicine.map((item) => ({
-            //   label: item.name === "all" ? "ทั้งหมด" : item.medicalname,
-            //   value: item.name,
-            // }))}
             onChange={(value) => setFilter(value)}
           >
             {medicine.map((item) => (
               <Select.Option key={item.id} value={item.name}>
-                {item.name === "all" ? "ทั้งหมด" : item.medicalname}
+                {item.name === "all" ? "ทั้งหมด" : item.name}
               </Select.Option>
             ))}
           </Select>
