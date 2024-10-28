@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 type pillType = {
   id: string;
   name: string;
+  medicalname: string;
   description: string;
   note: string;
   img: string;
@@ -18,6 +19,7 @@ const AdminPillDetail = () => {
   const [pill, setPill] = useState<pillType>();
   const [dataForm, setDataForm] = useState({
     name: "",
+    medicalname: "",
     description: "",
     note: "",
   });
@@ -40,6 +42,7 @@ const AdminPillDetail = () => {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setDataForm({ ...dataForm, [e.target.name]: e.target.value });
+    console.log(dataForm);
   };
   const handleDelelte = async () => {
     try {
@@ -117,12 +120,23 @@ const AdminPillDetail = () => {
             className="lg:w-1/3 border p-5 bg-white drop-shadow-lg rounded-xl "
           >
             <Form.Item>
-              <div className="text-lg">ชื่อยา</div>
+              <div className="text-lg">ชื่อยาสามัญ</div>
               <input
                 type="text"
                 name="name"
                 placeholder="ชื่อยา"
                 value={dataForm.name}
+                className="w-full p-2 border border-gray-300 rounded-lg mb-2"
+                onChange={handleFormChange}
+              />
+            </Form.Item>
+            <Form.Item>
+              <div className="text-lg">ชื่อยาทางการแพทย์</div>
+              <input
+                type="text"
+                name="medicalname"
+                placeholder="ชื่อยาทางการแพทย์"
+                value={dataForm.medicalname}
                 className="w-full p-2 border border-gray-300 rounded-lg mb-2"
                 onChange={handleFormChange}
               />

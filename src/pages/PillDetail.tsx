@@ -17,6 +17,7 @@ type pillData = {
     description: string;
     note: string;
     img: string;
+    medicalname: string;
   };
   times: {
     time: string;
@@ -46,6 +47,7 @@ const PillDetail = () => {
 
   useEffect(() => {
     fetchPill();
+    console.log(pill);
   }, []);
 
   if (isLoading) {
@@ -69,6 +71,12 @@ const PillDetail = () => {
           <div className="flex lg:w-1/2 w-full justify-center lg:justify-normal px-10 py-4">
             <b className="lg:text-2xl text-lg px-6">ชื่อยาสามัญ : </b>
             <div className="lg:text-2xl text-lg">{pill?.medicine.name}</div>
+          </div>
+          <div className="flex lg:w-1/2 w-full justify-center lg:justify-normal px-10 py-4">
+            <b className="lg:text-2xl text-lg px-6">ชื่อยาทางการแพทย์ : </b>
+            <div className="lg:text-2xl text-lg">
+              {pill?.medicine.medicalname}
+            </div>
           </div>
           <div className="flex lg:w-1/2 w-full justify-center lg:justify-normal px-10 py-4">
             <b className="font-bold lg:text-2xl text-lg px-6 text-right">
@@ -102,6 +110,12 @@ const PillDetail = () => {
           <h1 className="lg:text-3xl text-2xl text-center p-5">
             คุณสมบัติของ <b>{pill?.medicine.name}</b>
           </h1>
+          <div className="flex lg:w-1/2 w-full justify-center lg:justify-normal px-10 py-4">
+            <b className="lg:text-2xl text-lg px-6">ชื่อยาทางการแพทย์ : </b>
+            <div className="lg:text-2xl text-lg">
+              {pill?.medicine.medicalname}
+            </div>
+          </div>
           <div className="flex w-full lg:w-1/2 px-10 py-4 justify-center lg:justify-normal">
             <b className="font-bold text-lg lg:text-2xl px-6 text-right">
               สรรพคุณ :{" "}

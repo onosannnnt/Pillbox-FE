@@ -14,6 +14,7 @@ type TablePillStock = {
 type MedicineType = {
   description: string;
   name: string;
+  medicalname: string;
   id: string;
   img: string;
   note: string;
@@ -30,7 +31,7 @@ const pillStockColumns: TableColumnsType<TablePillStock> = [
     title: "ชื่อยาสามัญ",
     dataIndex: "medicine",
     key: "medicine",
-    render: (medicine) => <span>{medicine.name}</span>,
+    render: (medicine) => <span>{medicine.medicalname}</span>,
   },
   {
     title: "จำนวนยาทั้งหมด",

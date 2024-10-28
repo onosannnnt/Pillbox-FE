@@ -51,13 +51,11 @@ const AdminSideBar: React.FC = () => {
             <p className="text-center text-2xl ">{auth?.auth.username}</p>
             <Link to={ADMIN_ROUTE}>
               <p className="text-center hover:bg-secondary-blue p-2">
-                Dashboard
+                หน้าหลัก
               </p>
             </Link>
             <Link to={ADMIN_PILL_STOCK_ROUTE}>
-              <p className="text-center hover:bg-secondary-blue p-2">
-                Pill Stock
-              </p>
+              <p className="text-center hover:bg-secondary-blue p-2">คลังยา</p>
             </Link>
           </div>
         </div>

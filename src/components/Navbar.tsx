@@ -60,16 +60,16 @@ const Navbar: React.FC = () => {
               className="bg-primary-blue text-black flex flex-col w-full text-center"
             >
               <Menu.Item key="home">
-                <Link to={BASE_ROUTE}>Home</Link>
+                <Link to={BASE_ROUTE}>หน้าหลัก</Link>
               </Menu.Item>
               <Menu.Item key="history">
-                <Link to={HISTORY_ROUTE}>History</Link>
+                <Link to={HISTORY_ROUTE}>ประวัติ</Link>
               </Menu.Item>
               <Menu.Item key="forgotten-rate">
-                <Link to={FORGOTTEN_RATE_ROUTE}>Forgotten Rate</Link>
+                <Link to={FORGOTTEN_RATE_ROUTE}>อัตราการลืมทานยา</Link>
               </Menu.Item>
               <Menu.Item key="pill-stock">
-                <Link to={PILL_STOCK_ROUTE}>Pill Stock</Link>
+                <Link to={PILL_STOCK_ROUTE}>คลังยาที่มี</Link>
               </Menu.Item>
               {auth?.auth.role === "admin" && (
                 <Menu.Item key="admin">
@@ -82,7 +82,7 @@ const Navbar: React.FC = () => {
                   className="w-full"
                   onClick={handleLogout}
                 >
-                  Logout
+                  ออกจากระบบ
                 </Button>
               </Menu.Item>
             </Menu>

@@ -10,7 +10,7 @@ const AddMedicineForm = () => {
     name: "",
     description: "",
     note: "",
-    medicalName: "",
+    medicalname: "",
   });
   const [image, setImage] = useState<File>();
   const [previewImage, setPreviewImage] = useState<string | null>(null);
@@ -61,7 +61,7 @@ const AddMedicineForm = () => {
         className="lg:w-1/3 border p-5 bg-white drop-shadow-lg rounded-xl"
       >
         <Form.Item>
-          <div className="text-lg">ชื่อยา</div>
+          <div className="text-lg">ชื่อยาสามัญ</div>
           <input
             type="text"
             name="name"
@@ -71,10 +71,10 @@ const AddMedicineForm = () => {
           />
         </Form.Item>
         <Form.Item>
-          <div className="text-lg">ชื่อยาสามัญ</div>
+          <div className="text-lg">ชื่อยาทางการแพทย์</div>
           <input
             type="text"
-            name="medicalName"
+            name="medicalname"
             placeholder="ชื่อยา"
             className="w-full p-2 border border-gray-300 rounded-lg mb-2"
             onChange={handleFormChange}

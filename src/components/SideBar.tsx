@@ -51,19 +51,21 @@ const SideBar: React.FC = () => {
           <div className="flex flex-col gap-y-4 text-xl">
             <p className="text-center text-2xl ">{auth?.auth.username}</p>
             <Link to={BASE_ROUTE}>
-              <p className="text-center hover:bg-secondary-blue p-2">Home</p>
+              <p className="text-center hover:bg-secondary-blue p-2">
+                หน้าหลัก
+              </p>
             </Link>
             <Link to={HISTORY_ROUTE}>
-              <p className="text-center hover:bg-secondary-blue p-2">History</p>
+              <p className="text-center hover:bg-secondary-blue p-2">ประวัติ</p>
             </Link>
             <Link to={FORGOTTEN_RATE_ROUTE}>
               <p className="text-center hover:bg-secondary-blue p-2">
-                Forgetten Rate
+                อัตราการลืมทานยา
               </p>
             </Link>
             <Link to={PILL_STOCK_ROUTE}>
               <p className="text-center hover:bg-secondary-blue p-2">
-                Pill Stock
+                คลังยาที่มี
               </p>
             </Link>
             {auth?.auth.role === "admin" ? (

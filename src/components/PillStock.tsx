@@ -28,7 +28,7 @@ const pillStockColumns: TableColumnsType<TablePillStock> = [
     render: (channelIndex) => <span>{channelIndex + 1}</span>,
   },
   {
-    title: "ชื่อยาสามัญ",
+    title: "ชื่อยาทางการแพทย์",
     dataIndex: "medicine",
     key: "medicine",
     render: (medicine) => <span>{medicine.name}</span>,

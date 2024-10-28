@@ -69,7 +69,7 @@ const AdminNavbar: React.FC = () => {
                   className="w-full"
                   onClick={handleLogout}
                 >
-                  Logout
+                  ออกจากระบบ
                 </Button>
               </Menu.Item>
             </Menu>
