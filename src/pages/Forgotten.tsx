@@ -120,12 +120,18 @@ const Forgotten: FC = () => {
           <Select
             defaultValue="all"
             style={{ width: "20%" }}
-            options={medicine.map((item) => ({
-              label: item.name === "all" ? "ทั้งหมด" : item.medicalname,
-              value: item.name,
-            }))}
+            // options={medicine.map((item) => ({
+            //   label: item.name === "all" ? "ทั้งหมด" : item.medicalname,
+            //   value: item.name,
+            // }))}
             onChange={(value) => setFilter(value)}
-          />
+          >
+            {medicine.map((item) => (
+              <Select.Option key={item.id} value={item.name}>
+                {item.name === "all" ? "ทั้งหมด" : item.medicalname}
+              </Select.Option>
+            ))}
+          </Select>
         </div>
         <div className="flex justify-center h-3/4">
           <ResponsiveContainer width="100%" height="100%">
