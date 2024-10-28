@@ -23,6 +23,7 @@ type forgottenType = {
 type medicineType = {
   id: string;
   name: string;
+  medicalname: string;
   description: string;
   note: string;
   img: string;
@@ -40,6 +41,7 @@ const Forgotten: FC = () => {
         {
           id: "",
           name: "all",
+          medicalname: "ทั้งหมด",
           description: "",
           note: "",
           img: "",
@@ -86,6 +88,7 @@ const Forgotten: FC = () => {
     fetchMedicine();
     fetchForgotten();
     setIsLoading(false);
+    console.log(medicine);
   }, [filter]);
 
   if (isLoading) {
@@ -118,7 +121,7 @@ const Forgotten: FC = () => {
             defaultValue="all"
             style={{ width: "20%" }}
             options={medicine.map((item) => ({
-              label: item.name === "all" ? "ทั้งหมด" : item.name,
+              label: item.name === "all" ? "ทั้งหมด" : item.medicalname,
               value: item.name,
             }))}
             onChange={(value) => setFilter(value)}
