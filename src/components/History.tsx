@@ -119,7 +119,12 @@ const History: React.FC = () => {
           } else if (period === "month") {
             return date.getMonth() === new Date().getMonth();
           } else if (period === "last_month") {
-            return date.getMonth() === new Date().getMonth() - 1;
+            return (
+              date.getMonth() ===
+              (new Date().getMonth() - 1 === -1
+                ? 11
+                : new Date().getMonth() - 1)
+            );
           }
         })
       );
@@ -134,6 +139,9 @@ const History: React.FC = () => {
 
   useEffect(() => {
     getHistory();
+    console.log(
+      new Date().getMonth() - 1 === -1 ? 11 : new Date().getMonth() - 1
+    );
     setLoading(false);
   }, [period]);
 
